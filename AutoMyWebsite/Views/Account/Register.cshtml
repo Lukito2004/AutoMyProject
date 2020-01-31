@@ -2,76 +2,154 @@
 @{
     ViewData["Title"] = "Register";
 }
+<style>
+    body, html {
+        width: 100%;
+        height: 100%;
+        padding: 0px;
+        margin: 0px;
+        background-color: #F5F5F5;
+    }
 
-<h2>Create</h2>
+    input {
+        margin-bottom: 20px;
+    }
 
-<h4>AccountViewModel</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Register" asp-controller="Account" method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label class="control-label">First Name</label>
-                <input asp-for="FirstName" class="form-control" />
-                <span asp-validation-for="FirstName" class="text-danger"></span>
+    .myDiv {
+        width: 100%;
+        padding: 60px 78px;
+        max-width: 100%;
+        background-color: #fff;
+        border-radius: 10px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        box-shadow: 0 10px 30px rgba(55,58,64,.11);
+        text-align: center;
+    }
+</style>
+
+
+<main class="my-form">
+    <div class="cotainer">
+        <div class="row justify-content-center" style="padding: 0; margin: 0;">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header " style="color: orange;font-size: 20px;"> <span class="display-4"> AutoMy </span>- რეგისრაცია </div>
+                    <div class="card-body">
+                        <form name="my-form" masp-action="Register" asp-controller="Account" method="post">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <div class="form-group row">
+                                <label asp-for="FirstName" class="col-md-4 col-form-label text-md-right">სახელი</label>
+                                <div class="col-md-6">
+                                    <input type="text" asp-for="FirstName" class="form-control" name="FirstName">
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label asp-for="LastName" class="col-md-4 col-form-label text-md-right">გვარი</label>
+                                <div class="col-md-6">
+                                    <input type="text" asp-for="LastName" class="form-control" name="LastName">
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label asp-for="Username" class="col-md-4 col-form-label text-md-right">
+                                    მომხმარებლის
+                                    სახელი
+                                </label>
+                                <div class="col-md-6">
+                                    <input type="text" asp-for="Username" class="form-control" name="username">
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label asp-for="Email" class="col-md-4 col-form-label text-md-right">Email</label>
+                                <div class="col-md-6">
+                                    <input type="text" asp-for="Email" class="form-control" name="Email">
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label asp-for="PhoneNumber"
+                                       class="col-md-4 col-form-label text-md-right">ნომერი</label>
+                                <div class="col-md-6">
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">+995</span>
+                                        </div>
+                                        <input type="tel" asp-for="PhoneNumber" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+                                               class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label asp-for="Password" class="col-md-4 col-form-label text-md-right">
+                                    პაროლი
+                                </label>
+                                <div class="col-md-6">
+                                    <input type="password" asp-for="Password"  class="form-control">
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label asp-for="DateOfBirth" class="col-md-4 col-form-label text-md-right">
+                                    დაბადების
+                                    თარიღი
+                                </label>
+                                <div class="col-md-6">
+                                    <input type="date" asp-for="DateOfBirth" class="form-control" name="Date">
+                                </div>
+                            </div>
+
+
+
+
+
+                            <div class="d-flex justify-content-center">
+
+                                <div class="custom-file mb-3 " style="width: 65.5%;">
+
+
+                                    <label class="custom-file-label " asp-for="ImageUrl"> სურათი</label>
+
+
+                                    <input type="file" class="custom-file-input" asp-for="ImageUrl"
+                                           name="filename">
+
+                                </div>
+
+                            </div>
+
+                            <div class="col-md-6 offset-md-2">
+                                <button class="btn btn-warning my_btn" type="submit" style="margin-top: 25px;margin-bottom: 25px;border-radius: 25px;"> შესვლა და რეგისტრაცია </button>
+                                <a href="/Account/SignIn" class="btn btn-outline-secondary" style="border-radius: 25px;"> უკან</a>
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
-                <label class="control-label">Last Name</label>
-                <input asp-for="LastName" class="form-control" />
-                <span asp-validation-for="LastName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Username" class="control-label"></label>
-                <input asp-for="Username" class="form-control" />
-                <span asp-validation-for="Username" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Password" class="control-label"></label>
-                <input asp-for="Password" class="form-control" type="password" />
-                <span asp-validation-for="Password" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Email" class="control-label"></label>
-                <input asp-for="Email" class="form-control" />
-                <span asp-validation-for="Email" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label class="control-label">Mobile Number</label>
-                <div class="form-control" style="width: 42px!important; height: 38px!important; position: absolute; padding-left: 2px;">+995</div>
-                <input asp-for="PhoneNumber" class="form-control" style="display: inline-block; padding-left: 45px;" />
-                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label class="control-label">Date Of Birth</label>
-                <input type="date" asp-for="DateOfBirth" class="form-control" />
-                <span asp-validation-for="DateOfBirth" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label class="control-label">Profile Picture</label>
-                <input asp-for="ImageUrl" class="form-control" type="file" />
-                <span asp-validation-for="ImageUrl" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+        </div>
     </div>
-</div>
+
+</main>
+
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
 @*<script>
-    var Formio = document.querySelector("#Formio");
-    function ConfirmReg() {
-        $.ajax({
-            url: "/Account/ConfirmRegistration",
-            data:
-            context: document.body,
-            success: function (data) {
-                Formio.innerHTML += "<p>" + data + "</p>";
-            }
-        });
-    }
-</script>*@
+        var Formio = document.querySelector("#Formio");
+        function ConfirmReg() {
+            $.ajax({
+                url: "/Account/ConfirmRegistration",
+                data:
+                context: document.body,
+                success: function (data) {
+                    Formio.innerHTML += "<p>" + data + "</p>";
+                }
+            });
+        }
+    </script>*@
