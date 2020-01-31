@@ -8,99 +8,165 @@
         a, a:hover {
             text-decoration: none;
         }
+        body, html {
+            width: 100%;
+            height: 100%;
+            padding: 0px;
+            margin: 0px;
+            background-color: #F5F5F5;
+        }
+
+        #UserName {
+            padding: 1% 3%;
+            font-size: 15px;
+            margin-bottom: 5px;
+        }
+
+        #Password {
+            padding: 1% 3%;
+            font-size: 15px;
+            margin-bottom: 10px;
+        }
+
+        .input_div {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .myDiv {
+            padding: 60px 78px;
+            background-color: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 10px 30px rgba(55,58,64,.11);
+            text-align: center;
+        }
+
+        .my_btn {
+            border-radius: 10px;
+        }
     </style>
 </head>
-<body>
-    <h1>SignIn</h1>
-    <hr />
-    <div class="row">
-        <div class="col-md-4">
-            <form asp-action="SignIn" asp-controller="Account" method="post">
-                <div asp-validation-summary="All" class="text-danger"></div>
-                <div class="form-group">
-                    <label asp-for="Username" class="control-label">Username</label>
-                    <input asp-for="Username" class="form-control" />
-                    <span asp-validation-for="Username" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Password" class="control-label">Password</label>
-                    <input asp-for="Password" type="password" class="form-control" />
-                    <span asp-validation-for="Password" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <input type="submit" value="Sign In" class="btn btn-primary" />
-                </div>
-            </form>
+<body class="d-flex justify-content-center align-items-center">
+  
+
+
+
+
+    <div class="container_fluid ">
+        <div class="myDiv">
+            <h1 class="display-3" style="color: Orange;margin-bottom: 15px;">AutoMy</h1>
+            <h1 style="margin-bottom:30px ;font-size: 20px;">შესვლა</h1>
+            <div>
+                <form asp-action="SignIn" asp-controller="Account" method="post">
+                    <div asp-validation-summary="All" class="text-danger"></div>
+                    <div class="input_div">
+
+
+                        <label asp-for="Username"></label>
+                        <input type="text" asp-for="Username" class="form-control" placeholder="მომხმარებლის სახელი">
+
+
+
+
+                        <label asp-for="Password"></label>
+                        <input type="password" asp-for="Password" class="form-control" placeholder="პაროლი">
+
+
+
+                        <button class="btn btn-warning my_btn" type="submit" style="margin-bottom: 25px;">შესვლა</button>
+                    </div>
+                </form>
+
+            </div>
+
+            <div style="width: 100%;">
+                <a href="#" class="btn" style=" text-decoration: none;font-size: 15px;"> დაგავიწყდა პაროლი? </a>
+                <br>
+                <a href="/Account/Register" class="btn" style=" text-decoration: none;font-size: 15px;"> რეგისტრაცია </a>
+            </div>
         </div>
+
     </div>
-    <a href="/Account/Register">Don't have an account? Register!</a>
-    @*<script>    
-        var RowId = document.querySelector(".row");
-        var colmd4 = document.querySelector(".col-md-4");
-        var Boolean = false;
-        function GoToAccount()
-        {
-            alert("hey");
-            var _username = document.querySelector("#UsernameInput").value;
-            $.ajax({
-                url: "/Account/IndexWithUsername",
-                data: { Username: _username },
-                success: function (result)
-                {
-                    alert("yes");
-                }
-            });
-        }
-        function Authentification()
-        {
-            var _username = document.querySelector("#UsernameInput").value;
-            var _password = document.querySelector("#PasswordInput").value;
-            $.ajax({
-                type: "POST",
-                url: "/Account/SignIn",
-                dataType: "Json",
-                data: { username: _username, password: _password },
-                success: function (result)
-                {
-                    if (result.includes("Correct"))
+
+
+
+
+
+
+
+
+    @*<script>
+            var RowId = document.querySelector(".row");
+            var colmd4 = document.querySelector(".col-md-4");
+            var Boolean = false;
+            function GoToAccount()
+            {
+                alert("hey");
+                var _username = document.querySelector("#UsernameInput").value;
+                $.ajax({
+                    url: "/Account/IndexWithUsername",
+                    data: { Username: _username },
+                    success: function (result)
                     {
-                        Boolean = true;
+                        alert("yes");
                     }
-                    else
+                });
+            }
+            function Authentification()
+            {
+                var _username = document.querySelector("#UsernameInput").value;
+                var _password = document.querySelector("#PasswordInput").value;
+                $.ajax({
+                    type: "POST",
+                    url: "/Account/SignIn",
+                    dataType: "Json",
+                    data: { username: _username, password: _password },
+                    success: function (result)
                     {
-                        RowId.innerHTML = Colmd4.innerHTML + `<h3 style="color: Red;">${result}</h3>`;
+                        if (result.includes("Correct"))
+                        {
+                            Boolean = true;
+                        }
+                        else
+                        {
+                            RowId.innerHTML = Colmd4.innerHTML + `<h3 style="color: Red;">${result}</h3>`;
+                        }
                     }
-                }
-            });
-        }
-        function AuthenticateAndGoToAccount()
-        {
-            var _username = document.querySelector("#UsernameInput").value;
-            var _password = document.querySelector("#PasswordInput").value;
-            $.ajax({
-                type: "POST",
-                url: "/Account/SignIn",
-                dataType: "Json",
-                data: { username: _username, password: _password },
-                success: function (result)
-                {
-                    if (result.includes("Correct"))
+                });
+            }
+            function AuthenticateAndGoToAccount()
+            {
+                var _username = document.querySelector("#UsernameInput").value;
+                var _password = document.querySelector("#PasswordInput").value;
+                $.ajax({
+                    type: "POST",
+                    url: "/Account/SignIn",
+                    dataType: "Json",
+                    data: { username: _username, password: _password },
+                    success: function (result)
                     {
-                        Boolean = true;
+                        if (result.includes("Correct"))
+                        {
+                            Boolean = true;
+                        }
+                        else
+                        {
+                            RowId.innerHTML = `<div class="col-md-4">` + colmd4.innerHTML + `<h3 style="color: Red;">${result}</h3></div>`;
+                        }
+                        if (Boolean)
+                        {
+                            window.location = "/Account/IndexWithUsername?Username=" + _username;
+                        }
                     }
-                    else
-                    {
-                        RowId.innerHTML = `<div class="col-md-4">` + colmd4.innerHTML + `<h3 style="color: Red;">${result}</h3></div>`;
-                    }
-                    if (Boolean)
-                    {
-                        window.location = "/Account/IndexWithUsername?Username=" + _username;
-                    }
-                }
-            });
-        }
-        function isEmptyOrSpaces(str) {
-            return str === null || str.match(/^ *$/) !== null;
-        }
-    </script>*@
+                });
+            }
+            function isEmptyOrSpaces(str) {
+                return str === null || str.match(/^ *$/) !== null;
+            }
+        </script>*@
 </body>
