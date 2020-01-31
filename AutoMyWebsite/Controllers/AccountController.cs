@@ -26,6 +26,8 @@ namespace AutoMyWebsite.Controllers
         private readonly SignInManager<Account> _signInManager;
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly string hey = "wtf";
+        private readonly string hey1 = "hi wtff";
+
         private readonly IMapper _mapper;
 
         public AccountController(UserManager<Account> userManager, 
