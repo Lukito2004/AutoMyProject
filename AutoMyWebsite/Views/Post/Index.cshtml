@@ -1,0 +1,88 @@
+﻿@model List<PostViewModel>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<style>
+    .PostSection {
+        width: 100%;
+        margin: auto;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
+
+    .PostDiv {
+        width: 250px;
+        border: 1px solid steelblue;
+        padding-bottom: 10px;
+        margin-top: 20px;
+    }
+
+    .PostDiv p, .PostDiv a {
+        margin-left: 10px;
+    }
+
+    .PostDiv img {
+        width: 100%;
+        height: 150px;
+    }
+</style>
+
+<h1>Index</h1>
+
+<body onload="OnBodyLoad()">
+    <form asp-action="Filter" asp-controller="Post" method="post">
+        <span style="margin-left: 5px;">Category:</span>
+        <select name="categoryId">
+            <option value=1>Economy</option>
+            <option value=2>Compact</option>
+            <option value=3>Compact Cambrio</option>
+            <option value=4>Intermediate Combi</option>
+            <option value=5>Luxury Car</option>
+            <option value=6>Luxury Convertible</option>
+            <option value=7>SUV</option>
+            <option value=8>Off Road 4x4</option>
+            <option value=9>Pick-up Car</option>
+        </select>
+        <span style="margin-left: 5px;">Costs More Than:</span>
+        <input type="number" name="GreaterThanMoney" />
+        <span style="margin-left: 5px;">Costs Less Than:</span>
+        <input type="number" name="LessThanMoney" />
+        <input type="submit" value="Filter" class="btn btn-primary" style="margin-left: 10px;" />
+    </form>
+    <section class="PostSection">
+        @foreach (var post in Model)
+        {
+            <div class="PostDiv" id=@post.CategoryId>
+                <img src=@post.ImageUrl />
+                <p class="PostName">@post.Name</p>
+                <p id="CategoryId"></p>
+                <p class="PostPrice">Price: @post.Price$</p>
+                <p class="PostCompany">Company: @post.Company</p>
+                <p class="PostModel">Model: @post.Model</p>
+                <p class="PostPublishingYear">Year: @post.PublishingYear</p>
+                <a class="btn btn-primary" href=@Url.Action("Details", "Post", new { Postid = post.Id })>Details</a>
+            </div>
+        }
+    </section>
+
+    <script>
+        var Divs = document.querySelectorAll(".PostDiv");
+        var Counter = 0;
+        function OnBodyLoad()
+        {
+            Divs.forEach(o => {
+                var categoryId = o.getAttribute("id");
+                $.ajax({
+                    url: "/Post/ReturnCategory",
+                    data: { CategoryId: categoryId },
+                    success: function (result) {
+                        debugger;
+                        o.querySelector("#CategoryId").textContent = "Category: " + result;
+                    }
+                });
+            });
+        }
+    </script>
+</body>

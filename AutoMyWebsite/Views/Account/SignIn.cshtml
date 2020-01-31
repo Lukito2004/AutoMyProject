@@ -1,0 +1,106 @@
+﻿@model SignInModel
+@{
+    ViewData["Title"] = "SignIn";
+    Layout = "_Layout";
+}
+<head>
+    <style>
+        a, a:hover {
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>SignIn</h1>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="SignIn" asp-controller="Account" method="post">
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Username" class="control-label">Username</label>
+                    <input asp-for="Username" class="form-control" />
+                    <span asp-validation-for="Username" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Password" class="control-label">Password</label>
+                    <input asp-for="Password" type="password" class="form-control" />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Sign In" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+    <a href="/Account/Register">Don't have an account? Register!</a>
+    @*<script>    
+        var RowId = document.querySelector(".row");
+        var colmd4 = document.querySelector(".col-md-4");
+        var Boolean = false;
+        function GoToAccount()
+        {
+            alert("hey");
+            var _username = document.querySelector("#UsernameInput").value;
+            $.ajax({
+                url: "/Account/IndexWithUsername",
+                data: { Username: _username },
+                success: function (result)
+                {
+                    alert("yes");
+                }
+            });
+        }
+        function Authentification()
+        {
+            var _username = document.querySelector("#UsernameInput").value;
+            var _password = document.querySelector("#PasswordInput").value;
+            $.ajax({
+                type: "POST",
+                url: "/Account/SignIn",
+                dataType: "Json",
+                data: { username: _username, password: _password },
+                success: function (result)
+                {
+                    if (result.includes("Correct"))
+                    {
+                        Boolean = true;
+                    }
+                    else
+                    {
+                        RowId.innerHTML = Colmd4.innerHTML + `<h3 style="color: Red;">${result}</h3>`;
+                    }
+                }
+            });
+        }
+        function AuthenticateAndGoToAccount()
+        {
+            var _username = document.querySelector("#UsernameInput").value;
+            var _password = document.querySelector("#PasswordInput").value;
+            $.ajax({
+                type: "POST",
+                url: "/Account/SignIn",
+                dataType: "Json",
+                data: { username: _username, password: _password },
+                success: function (result)
+                {
+                    if (result.includes("Correct"))
+                    {
+                        Boolean = true;
+                    }
+                    else
+                    {
+                        RowId.innerHTML = `<div class="col-md-4">` + colmd4.innerHTML + `<h3 style="color: Red;">${result}</h3></div>`;
+                    }
+                    if (Boolean)
+                    {
+                        window.location = "/Account/IndexWithUsername?Username=" + _username;
+                    }
+                }
+            });
+        }
+        function isEmptyOrSpaces(str) {
+            return str === null || str.match(/^ *$/) !== null;
+        }
+    </script>*@
+</body>

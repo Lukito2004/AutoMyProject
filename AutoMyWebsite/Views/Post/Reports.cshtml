@@ -1,0 +1,86 @@
+﻿@model List<ReportViewModel>
+@{
+    ViewData["Title"] = "Reports";
+}
+<style>
+    .ReportSection {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
+    .ReportDiv {
+        width: 200px;
+        border: 1px solid steelblue;
+        padding: 5px;
+    }
+    a {
+        text-decoration: none;
+    }
+    a:hover {
+        text-decoration: none;
+    }
+    .buttondiv {
+        width: 148px;
+        margin: auto;
+    }
+</style>
+
+<h1>Reports</h1>
+
+<body onload="WhenBodyLoads()">
+    <section class="ReportSection" id="reportSection">
+        @foreach (var report in Model)
+        {
+            <div class="ReportDiv" id="@report.Id">
+                <p>Submitted By: <a id="ReporterName" href="/Account/IndexWithId?id=@report.SenderAccountId"></a></p>
+                <a href="/Post/Details?Postid=@report.PostId" id="PostName" style="display: block; text-align: center;"></a>
+                <p style="text-align: center">@report.Reason</p>
+                <div class="buttondiv">
+                    <a class="btn btn-success" href="/Post/AcceptReport?postId=@report.PostId">Accept</a>
+                    <a class="btn btn-danger" href="/Post/RejectReport?reportId=@report.Id">Reject</a>
+                </div>
+            </div>
+        }
+    </section>
+    <script>
+        var Divs = document.querySelectorAll(".ReportDiv");
+        function Something(ReportId, SenderId, PostId)
+        {
+            $.ajax({
+                url: "/Account/ReturnPosterUsername?usernameId=" + SenderId,
+                success: function (result)
+                {
+                    Divs.forEach(o => {
+                        if (o.id == ReportId)
+                        {
+                            o.querySelector("#ReporterName").textContent = result;
+                        }
+                    });
+                }
+            });
+            $.ajax({
+                url: "/Post/ReturnPostName?id=" + PostId,
+                success: function (result)
+                {
+                    Divs.forEach(o => {
+                        if (o.id == ReportId)
+                        {
+                            o.querySelector("#PostName").textContent = result;
+                        }
+                    });
+                }
+            });
+        }
+        function WhenBodyLoads()
+        {
+            Divs.forEach(o => {
+                var Reportid = o.getAttribute("id");
+                var Senderid = o.querySelector("#ReporterName").getAttribute("href").replace("/Account/IndexWithId?id=", "");
+                var Postid = o.querySelector("#PostName").getAttribute("href").replace("/Post/Details?Postid=", "");
+                Something(Reportid, Senderid, Postid);
+            });
+        }
+    </script>
+</body>
+

@@ -1,0 +1,77 @@
+﻿@model AccountViewModel
+@{
+    ViewData["Title"] = "Register";
+}
+
+<h2>Create</h2>
+
+<h4>AccountViewModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Register" asp-controller="Account" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label class="control-label">First Name</label>
+                <input asp-for="FirstName" class="form-control" />
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Last Name</label>
+                <input asp-for="LastName" class="form-control" />
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Username" class="control-label"></label>
+                <input asp-for="Username" class="form-control" />
+                <span asp-validation-for="Username" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Password" class="control-label"></label>
+                <input asp-for="Password" class="form-control" type="password" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Mobile Number</label>
+                <div class="form-control" style="width: 42px!important; height: 38px!important; position: absolute; padding-left: 2px;">+995</div>
+                <input asp-for="PhoneNumber" class="form-control" style="display: inline-block; padding-left: 45px;" />
+                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Date Of Birth</label>
+                <input type="date" asp-for="DateOfBirth" class="form-control" />
+                <span asp-validation-for="DateOfBirth" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Profile Picture</label>
+                <input asp-for="ImageUrl" class="form-control" type="file" />
+                <span asp-validation-for="ImageUrl" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+@*<script>
+    var Formio = document.querySelector("#Formio");
+    function ConfirmReg() {
+        $.ajax({
+            url: "/Account/ConfirmRegistration",
+            data:
+            context: document.body,
+            success: function (data) {
+                Formio.innerHTML += "<p>" + data + "</p>";
+            }
+        });
+    }
+</script>*@

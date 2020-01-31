@@ -1,0 +1,199 @@
+﻿@model PostViewModel
+@{
+    ViewData["Title"] = "Create";
+}
+<h2>Create</h2>
+
+<h4>PostViewModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create" asp-controller="Post" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label class="control-label">Name</label>
+                <input maxlength="25" asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Price</label>
+                <input maxlength="7" type="number" asp-for="Price" class="form-control" />
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Image</label>
+                <input type="file" asp-for="ImageUrl" class="form-control" />
+                <span asp-validation-for="ImageUrl" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Category</label>
+                @Html.DropDownListFor(o => o.CategoryId, Model.CategoryListItem, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                <label asp-for="Company" class="control-label"></label>
+                <input maxlength="20" asp-for="Company" class="form-control" />
+                <span asp-validation-for="Company" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Model" class="control-label"></label>
+                <input maxlength="20" asp-for="Model" class="form-control" />
+                <span asp-validation-for="Model" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Publishing Year</label>
+                <input maxlength="4" asp-for="PublishingYear" class="form-control" />
+                <span asp-validation-for="PublishingYear" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Fuel</label>
+                @Html.DropDownListFor(o => o.fuelType, Model.FuelListItem, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                <label class="control-label">Engine Velocity</label>
+                <input maxlength="5" asp-for="VelocityOfEngine" class="form-control" />
+                <span asp-validation-for="VelocityOfEngine" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Distance Drove</label>
+                <input maxlength="7" asp-for="DistanceDrove" class="form-control" />
+                <span asp-validation-for="DistanceDrove" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Cilinders</label>
+                <input maxlength="3" asp-for="Cilinders" class="form-control" />
+                <span asp-validation-for="Cilinders" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Gear Box</label>
+                <input maxlength="25" asp-for="GearBox" class="form-control" />
+                <span asp-validation-for="GearBox" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Drive Wheels</label>
+                <input maxlength="25" asp-for="DriveWheels" class="form-control" />
+                <span asp-validation-for="DriveWheels" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Doors</label>
+                <input maxlength="25" asp-for="Doors" class="form-control" />
+                <span asp-validation-for="Doors" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Wheel</label>
+                @Html.DropDownListFor(o => o.Wheel, Model.WheelsListItem, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                <label class="control-label">Color</label>
+                <input maxlength="25" asp-for="Color" class="form-control" />
+                <span asp-validation-for="Color" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Cabin Color</label>
+                <input maxlength="25" asp-for="CabinColor" class="form-control" />
+                <span asp-validation-for="CabinColor" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Airbags</label>
+                <input maxlength="2" asp-for="AirbagCount" class="form-control" />
+                <span asp-validation-for="AirbagCount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">ABS</label>
+                <input asp-for="ABS" class="form-control" />
+                <span asp-validation-for="ABS" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Electronic Windows</label>
+                <input asp-for="ElectronicWindows" class="form-control" />
+                <span asp-validation-for="ElectronicWindows" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Air Conditioner</label>
+                <input asp-for="AirConditioner" class="form-control" />
+                <span asp-validation-for="AirConditioner" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Climate Control</label>
+                <input asp-for="ClimateControl" class="form-control" />
+                <span asp-validation-for="ClimateControl" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Leather Saloon</label>
+                <input asp-for="LeatherSaloon" class="form-control" />
+                <span asp-validation-for="LeatherSaloon" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Disks</label>
+                <input asp-for="Disks" class="form-control" />
+                <span asp-validation-for="Disks" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Navigation</label>
+                <input asp-for="Navigation" class="form-control" />
+                <span asp-validation-for="Navigation" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Central Locker</label>
+                <input asp-for="CentralLocker" class="form-control" />
+                <span asp-validation-for="CentralLocker" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Hatch</label>
+                <input asp-for="Hatch" class="form-control" />
+                <span asp-validation-for="Hatch" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Signaling</label>
+                <input asp-for="Signaling" class="form-control" />
+                <span asp-validation-for="Signaling" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">On Board Computer</label>
+                <input asp-for="OnBoardComputer" class="form-control" />
+                <span asp-validation-for="OnBoardComputer" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Hydraulics</label>
+                <input asp-for="Hydraulics" class="form-control" />
+                <span asp-validation-for="Hydraulics" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Anti-Skid</label>
+                <input asp-for="AntiSkid" class="form-control" />
+                <span asp-validation-for="AntiSkid" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Armchairs Heating</label>
+                <input asp-for="ArmchairsHeating" class="form-control" />
+                <span asp-validation-for="ArmchairsHeating" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Parking Control</label>
+                <input asp-for="ParkingControl" class="form-control" />
+                <span asp-validation-for="ParkingControl" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Back View Camera</label>
+                <input asp-for="BackViewCamera" class="form-control" />
+                <span asp-validation-for="BackViewCamera" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Tech Browsing</label>
+                <input asp-for="TechBrowsing" class="form-control" />
+                <span asp-validation-for="TechBrowsing" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Description</label>
+                <textarea maxlength="1200" asp-for="Description" class="form-control"></textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,211 @@
+﻿@model AutoMyWebsite.Models.PostViewModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>PostViewModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit" asp-controller="Post" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Id" hidden="hidden" class="control-label"></label>
+                <input asp-for="Id" hidden="hidden" class="form-control" />
+                <span asp-validation-for="Id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AccountId" hidden="hidden" class="control-label"></label>
+                <input asp-for="AccountId" hidden="hidden" class="form-control" />
+                <span asp-validation-for="AccountId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Price" class="control-label"></label>
+                <input asp-for="Price" class="form-control" />
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Image Url</label>
+                <input asp-for="ImageUrl" class="form-control" />
+                <span asp-validation-for="ImageUrl" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Category</label>
+                @Html.DropDownListFor(o => o.CategoryId, Model.CategoryListItem, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                <label asp-for="Company" class="control-label"></label>
+                <input asp-for="Company" class="form-control" />
+                <span asp-validation-for="Company" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Model" class="control-label"></label>
+                <input asp-for="Model" class="form-control" />
+                <span asp-validation-for="Model" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Publishing Year</label>
+                <input asp-for="PublishingYear" class="form-control" />
+                <span asp-validation-for="PublishingYear" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Fuel</label>
+                @Html.DropDownListFor(o => o.fuelType, Model.FuelListItem, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                <label class="control-label">Engine Velocity</label>
+                <input asp-for="VelocityOfEngine" class="form-control" />
+                <span asp-validation-for="VelocityOfEngine" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Distance Drove</label>
+                <input asp-for="DistanceDrove" class="form-control" />
+                <span asp-validation-for="DistanceDrove" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Cilinders" class="control-label"></label>
+                <input asp-for="Cilinders" class="form-control" />
+                <span asp-validation-for="Cilinders" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Gear Box</label>
+                <input asp-for="GearBox" class="form-control" />
+                <span asp-validation-for="GearBox" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Drive Wheels</label>
+                <input asp-for="DriveWheels" class="form-control" />
+                <span asp-validation-for="DriveWheels" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Doors" class="control-label"></label>
+                <input asp-for="Doors" class="form-control" />
+                <span asp-validation-for="Doors" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Wheel</label>
+                @Html.DropDownListFor(o => o.Wheel, Model.WheelsListItem, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                <label class="control-label">Color</label>
+                <input asp-for="Color" class="form-control" />
+                <span asp-validation-for="Color" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Cabin Color</label>
+                <input asp-for="CabinColor" class="form-control" />
+                <span asp-validation-for="CabinColor" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Airbag Count</label>
+                <input asp-for="AirbagCount" class="form-control" />
+                <span asp-validation-for="AirbagCount" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="ABS" /> @Html.DisplayNameFor(model => model.ABS)
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="ElectronicWindows" /> @Html.DisplayNameFor(model => model.ElectronicWindows)
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="AirConditioner" /> @Html.DisplayNameFor(model => model.AirConditioner)
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="ClimateControl" /> @Html.DisplayNameFor(model => model.ClimateControl)
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="LeatherSaloon" /> @Html.DisplayNameFor(model => model.LeatherSaloon)
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Disks" /> @Html.DisplayNameFor(model => model.Disks)
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Navigation" /> @Html.DisplayNameFor(model => model.Navigation)
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="CentralLocker" /> @Html.DisplayNameFor(model => model.CentralLocker)
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Hatch" /> @Html.DisplayNameFor(model => model.Hatch)
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Signaling" /> @Html.DisplayNameFor(model => model.Signaling)
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="OnBoardComputer" /> @Html.DisplayNameFor(model => model.OnBoardComputer)
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Hydraulics" /> @Html.DisplayNameFor(model => model.Hydraulics)
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="AntiSkid" /> @Html.DisplayNameFor(model => model.AntiSkid)
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="ArmchairsHeating" /> @Html.DisplayNameFor(model => model.ArmchairsHeating)
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="ParkingControl" /> @Html.DisplayNameFor(model => model.ParkingControl)
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="BackViewCamera" /> @Html.DisplayNameFor(model => model.BackViewCamera)
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="TechBrowsing" /> @Html.DisplayNameFor(model => model.TechBrowsing)
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Description</label>
+                <textarea asp-for="Description" class="form-control"></textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }

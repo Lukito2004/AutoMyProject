@@ -1,0 +1,167 @@
+﻿@model AccountViewModel
+@{
+    ViewData["Title"] = "Index";
+    Layout = "_Layout";
+    //if (Model.Id == CurrentAccount.currentAccount.Id)
+    //    SomeBoolean = true;
+    //}
+    //bool AccountBoolean = false;
+    //if (Model.Type == AutoMy.DomainModels.AccountType.Admin)
+    //{
+    //    AccountBoolean = true;
+    //}
+}
+
+<h1>Hello @Model.Username</h1>
+
+<head>
+    <meta charset="UTF-8">
+    <style>
+        .UserSection {
+            width: 100%;
+        }
+        .UserInformation {
+            width: 400px;
+            height: 400px;
+            border: 1px solid steelblue;
+            border-radius: 5px;
+            margin: auto;
+        }
+        .UserInformation img {
+            width: 150px;
+            height: 150px;
+            display: block;
+            border-radius: 8px;
+            margin: auto;
+        }
+        .UserInformation p {
+            text-align: center;
+            font-size: 20px;
+        }
+        .UserInformation .Name {
+            font-size: 15px!important;
+        }
+        .UserInformation .Number {
+            font-size: 13px!important;
+        }
+        .PostSection {
+            width: 100%;
+            margin: auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+        .PostDiv {
+            width: 250px;
+            border: 1px solid steelblue;
+            padding-bottom: 10px;
+            margin-top: 20px;
+        }
+        .PostDiv p, .PostDiv a {
+            margin-left: 10px;
+        }
+        .PostDiv img {
+            width: 100%;
+            height: 150px;
+        }
+    </style>
+</head>
+<body onload="OnBodyLoad()">
+    <main>
+        <section class="UserSection">
+            <div class="UserInformation">
+                @if (Model.ImageUrl != null)
+                {
+                    <img src="@Model.ImageUrl" />
+                }
+                else
+                {
+                    <img src="~/Source/user-default.jpg" />
+                }
+                <p id="UsernameP">@Model.Username</p>
+                <p class="Name">@Model.FirstName @Model.LastName</p>
+                <p class="Number">Number: @Model.PhoneNumber</p>
+            </div>
+            <div id="PostEditDiv">
+                @*@if (SomeBoolean)
+                {
+                    <a class="btn btn-primary" href="/Post/Create">Post!</a>
+                    <a class="btn btn-primary" href="/Account/Edit">Edit Account</a>
+                }*@
+                @*@if (AccountBoolean)
+                {
+                    <a class="btn btn-primary" href="/Post/Reports">Reports</a>
+                }*@
+            </div>
+        </section>
+        <section class="PostSection">
+            @foreach(var post in Model.Posts)
+            {
+                <div class="PostDiv" id="@post.CategoryId">
+                    <img src=@post.ImageUrl />
+                    <p class="PostName">@post.Name</p>
+                    <p id="CategoryId"></p>
+                    <p class="PostPrice">Price: @post.Price$</p>
+                    <p class="PostCompany">Company: @post.Company</p>
+                    <p class="PostModel">Model: @post.Model</p>
+                    <p class="PostPublishingYear">Year: @post.PublishingYear</p>
+                    <a class="btn btn-primary" href=@Url.Action("Details", "Post", new { Postid = post.Id })>Details</a>
+                </div>
+            }
+        </section>
+    </main>
+    <script>
+        var Counter = 0;
+        var username = document.querySelector("#UsernameP").textContent;
+        function IsAdminOrNot()
+        {
+            $.ajax({
+                type: "GET",
+                url: "/Account/IsAccountInRole?username=@Model.Username",
+                success: function (result)
+                {
+                    if (result)
+                    {
+                        document.querySelector("#PostEditDiv").innerHTML += `<a href="/Post/Reports" class="btn btn-primary" style="margin-left: 5px;">Reports</a>`
+                    }
+                }
+            });
+        }
+        function PostEdit()
+        {
+            $.ajax({
+                url: "/Account/ReturnUsername",
+                success: function (result)
+                {
+                    if (username == result)
+                    {
+                        document.querySelector("#PostEditDiv").innerHTML = `<a class="btn btn-primary" href="/Post/Create">Post!</a>
+                        <a class="btn btn-primary" href="/Account/Edit">Edit Account</a>`;
+                    }
+                }
+            });
+        }
+        var Divs = document.querySelectorAll(".PostDiv");
+        var Counter = 0;
+        function ReturnCategory()
+        {
+            Divs.forEach(o => {
+                var categoryId = o.getAttribute("id");
+                $.ajax({
+                    url: "/Post/ReturnCategory",
+                    data: { CategoryId: categoryId },
+                    success: function (result) {
+                        debugger;
+                        o.querySelector("#CategoryId").textContent = "Category: " + result;
+                    }
+                });
+            });
+        }
+        function OnBodyLoad()
+        {
+            PostEdit();
+            IsAdminOrNot();
+            ReturnCategory();
+        }
+    </script>
+</body>
