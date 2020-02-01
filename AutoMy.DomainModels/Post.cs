@@ -10,22 +10,26 @@ namespace AutoMy.DomainModels
         public string AccountId { get; set; }
         public int CategoryId { get; set; }
         public string Name { get; set; }
+        public string CityName { get; set; }
+        public string VinCode { get; set; }
         public decimal Price { get; set; }
-        public string ImageUrl { get; set; }
         public string Company { get; set; }
         public string Model { get; set; }
         public int PublishingYear { get; set; }
         public FuelType fuelType { get; set; }
+        public BuyType buyType { get; set; }
         public int VelocityOfEngine { get; set; }
-        public int DistanceDrove { get; set; }
+        public int Mileage { get; set; }
         public int Cilinders { get; set; }
         public string GearBox { get; set; }
-        public string DriveWheels { get; set; }
+        public LeadingWheels DriveWheels { get; set; }
         public string Doors { get; set; }
         public WheelType Wheel { get; set; }
         public string Color { get; set; }
         public string CabinColor { get; set; }
         public int AirbagCount { get; set; }
+        public LevyType Levied { get; set; }
+        public bool Turbo { get; set; }
         public bool ABS { get; set; }
         public bool ElectronicWindows { get; set; }
         public bool AirConditioner { get; set; }
@@ -42,7 +46,10 @@ namespace AutoMy.DomainModels
         public bool ArmchairsHeating { get; set; }
         public bool ParkingControl { get; set; }
         public bool BackViewCamera { get; set; }
-        public bool TechBrowsing { get; set; }
         public string Description { get; set; }
+        public bool TechInspection { get; set; }
+        public string ImageUrl1 { get; set; }
+        public string ImageUrl2 { get; set; }
+        public string ImageUrl3 { get; set; }
     }
 }

@@ -4,14 +4,16 @@ using AutoMy.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AutoMy.Database.Migrations
 {
     [DbContext(typeof(AutoMyDBContext))]
-    partial class AutoMyDBContextModelSnapshot : ModelSnapshot
+    [Migration("20200201015338_PostMigration")]
+    partial class PostMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -173,12 +175,16 @@ namespace AutoMy.Database.Migrations
                     b.Property<bool>("Disks")
                         .HasColumnType("bit");
 
+                    b.Property<int>("DistanceDrove")
+                        .HasColumnType("int");
+
                     b.Property<string>("Doors")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("DriveWheels")
-                        .HasColumnType("int");
+                    b.Property<string>("DriveWheels")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("ElectronicWindows")
                         .HasColumnType("bit");
@@ -193,26 +199,12 @@ namespace AutoMy.Database.Migrations
                     b.Property<bool>("Hydraulics")
                         .HasColumnType("bit");
 
-                    b.Property<string>("ImageUrl1")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ImageUrl2")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ImageUrl3")
+                    b.Property<string>("ImageUrl")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("LeatherSaloon")
                         .HasColumnType("bit");
-
-                    b.Property<int>("Levied")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Mileage")
-                        .HasColumnType("int");
 
                     b.Property<string>("Model")
                         .IsRequired()
@@ -240,17 +232,14 @@ namespace AutoMy.Database.Migrations
                     b.Property<bool>("Signaling")
                         .HasColumnType("bit");
 
-                    b.Property<bool>("TechInspection")
+                    b.Property<bool>("TechBrowsing")
                         .HasColumnType("bit");
 
-                    b.Property<bool>("Turbo")
+                    b.Property<bool>("TechInspection")
                         .HasColumnType("bit");
 
                     b.Property<int>("VelocityOfEngine")
                         .HasColumnType("int");
-
-                    b.Property<string>("VinCode")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Wheel")
                         .HasColumnType("int");

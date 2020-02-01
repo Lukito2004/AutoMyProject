@@ -102,7 +102,7 @@ namespace AutoMyWebsite.Controllers
         {
             return Task.Run(() =>
             {
-                post.WheelsListItem = Enum.GetValues(typeof(WheelType)).Cast<WheelType>().Select(v => new SelectListItem
+                post.DriveWheelsListItem = Enum.GetValues(typeof(LeadingWheels)).Cast<LeadingWheels>().Select(v => new SelectListItem
                 {
                     Text = v.ToString(),
                     Value = ((int)v).ToString()

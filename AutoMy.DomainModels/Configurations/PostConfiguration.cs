@@ -12,14 +12,16 @@ namespace AutoMy.DomainModels.Configurations
         {
             builder.HasKey(o => o.Id);
             builder.Property(o => o.Name).IsRequired();
-            builder.Property(o => o.ImageUrl).IsRequired();
+            builder.Property(o => o.ImageUrl1).IsRequired();
+            builder.Property(o => o.ImageUrl2).IsRequired();
+            builder.Property(o => o.ImageUrl3).IsRequired();
             builder.Property(o => o.Price).IsRequired();
             builder.Property(o => o.Price).HasColumnType("decimal(8,2)");
             builder.Property(o => o.Model).IsRequired();
             builder.Property(o => o.PublishingYear).IsRequired();
             builder.Property(o => o.fuelType).IsRequired();
             builder.Property(o => o.VelocityOfEngine).IsRequired();
-            builder.Property(o => o.DistanceDrove).IsRequired();
+            builder.Property(o => o.Mileage).IsRequired();
             builder.Property(o => o.Cilinders).IsRequired();
             builder.Property(o => o.GearBox).IsRequired();
             builder.Property(o => o.DriveWheels).IsRequired();
@@ -44,7 +46,7 @@ namespace AutoMy.DomainModels.Configurations
             builder.Property(o => o.ArmchairsHeating).IsRequired();
             builder.Property(o => o.ParkingControl).IsRequired();
             builder.Property(o => o.BackViewCamera).IsRequired();
-            builder.Property(o => o.TechBrowsing).IsRequired();
+            builder.Property(o => o.TechInspection).IsRequired();
             builder.Property(o => o.Description).IsRequired();
         }
     }

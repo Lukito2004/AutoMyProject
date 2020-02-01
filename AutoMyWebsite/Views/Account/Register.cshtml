@@ -27,6 +27,14 @@
         box-shadow: 0 10px 30px rgba(55,58,64,.11);
         text-align: center;
     }
+
+    input, .mb-3, .my-3 {
+        margin-bottom: 3px!important;
+    }
+
+    .col-form-label {
+        padding-right: 3px;
+    }
 </style>
 
 
@@ -40,74 +48,72 @@
                         <form name="my-form" masp-action="Register" asp-controller="Account" method="post">
                             <div asp-validation-summary="All" class="text-danger"></div>
                             <div class="form-group row">
-                                <label asp-for="FirstName" class="col-md-4 col-form-label text-md-right">სახელი</label>
+                                <label class="col-md-4 col-form-label text-md-right">სახელი</label>
                                 <div class="col-md-6">
-                                    <input type="text" asp-for="FirstName" class="form-control" name="FirstName">
+                                    <input type="text" asp-for="FirstName" class="form-control">
+                                    <span asp-validation-for="FirstName" class="text-danger"></span>
                                 </div>
-                                <span asp-validation-for="FirstName" class="text-danger"></span>
                             </div>
 
                             <div class="form-group row">
-                                <label asp-for="LastName" class="col-md-4 col-form-label text-md-right">გვარი</label>
+                                <label class="col-md-4 col-form-label text-md-right">გვარი</label>
                                 <div class="col-md-6">
-                                    <input type="text" asp-for="LastName" class="form-control" name="LastName">
+                                    <input type="text" asp-for="LastName" class="form-control">
+                                    <span asp-validation-for="LastName" class="text-danger"></span>
                                 </div>
-                                <span asp-validation-for="LastName" class="text-danger"></span>
                             </div>
 
                             <div class="form-group row">
-                                <label asp-for="Username" class="col-md-4 col-form-label text-md-right">
+                                <label class="col-md-4 col-form-label text-md-right">
                                     მომხმარებლის
                                     სახელი
                                 </label>
                                 <div class="col-md-6">
-                                    <input type="text" asp-for="Username" class="form-control" name="username">
+                                    <input type="text" asp-for="Username" class="form-control">
+                                    <span asp-validation-for="Username" class="text-danger"></span>
                                 </div>
-                                <span asp-validation-for="Username" class="text-danger"></span>
                             </div>
 
                             <div class="form-group row">
-                                <label asp-for="Email" class="col-md-4 col-form-label text-md-right">Email</label>
+                                <label class="col-md-4 col-form-label text-md-right">Email</label>
                                 <div class="col-md-6">
-                                    <input type="text" asp-for="Email" class="form-control" name="Email">
+                                    <input type="text" asp-for="Email" class="form-control">
+                                    <span asp-validation-for="Email" class="text-danger"></span>
                                 </div>
-                                <span asp-validation-for="Email" class="text-danger"></span>
                             </div>
 
                             <div class="form-group row">
-                                <label asp-for="PhoneNumber"
-                                       class="col-md-4 col-form-label text-md-right">ნომერი</label>
+                                <label class="col-md-4 col-form-label text-md-right">ნომერი</label>
                                 <div class="col-md-6">
                                     <div class="input-group mb-3">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text">+995</span>
                                         </div>
-                                        <input type="tel" asp-for="PhoneNumber" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
-                                               class="form-control">
+                                        <input type="tel" asp-for="PhoneNumber" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" class="form-control">
                                     </div>
+                                    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
                                 </div>
-                                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
                             </div>
 
                             <div class="form-group row">
-                                <label asp-for="Password" class="col-md-4 col-form-label text-md-right">
+                                <label class="col-md-4 col-form-label text-md-right">
                                     პაროლი
                                 </label>
                                 <div class="col-md-6">
                                     <input type="password" asp-for="Password" class="form-control">
+                                    <span asp-validation-for="Password" class="text-danger"></span>
                                 </div>
-                                <span asp-validation-for="Password" class="text-danger"></span>
                             </div>
 
                             <div class="form-group row">
-                                <label asp-for="DateOfBirth" class="col-md-4 col-form-label text-md-right">
+                                <label class="col-md-4 col-form-label text-md-right">
                                     დაბადების
                                     თარიღი
                                 </label>
                                 <div class="col-md-6">
-                                    <input type="date" asp-for="DateOfBirth" class="form-control" name="Date">
+                                    <input type="date" asp-for="DateOfBirth" class="form-control">
+                                    <span asp-validation-for="DateOfBirth" class="text-danger"></span>
                                 </div>
-                                <span asp-validation-for="DateOfBirth" class="text-danger"></span>
                             </div>
 
 
@@ -119,21 +125,18 @@
                                 <div class="custom-file mb-3 " style="width: 65.5%;">
 
 
-                                    <label class="custom-file-label " asp-for="ImageUrl"> სურათი</label>
+                                    <label class="custom-file-label " > სურათი</label>
 
 
-                                    <input type="file" class="custom-file-input" asp-for="ImageUrl"
-                                           name="filename">
-
+                                    <input type="file" class="custom-file-input" asp-for="ImageUrl">
+                                    <span asp-validation-for="ImageUrl" class="text-danger"></span>
                                 </div>
-                                <span asp-validation-for="ImageUrl" class="text-danger"></span>
 
                             </div>
 
                             <div class="col-md-6 offset-md-2">
-                                <button class="btn btn-warning my_btn" type="submit" style="margin-top: 25px;margin-bottom: 25px;border-radius: 25px;"> შესვლა და რეგისტრაცია </button>
-                                <a href="/Account/SignIn" class="btn btn-outline-secondary" style="border-radius: 25px;"> უკან</a>
-
+                                <input class="btn btn-warning my_btn" type="submit" style="margin-top: 25px; margin-bottom: 25px!important; border-radius: 25px; margin-right: 5px;" value="შესვლა და რეგისტრაცია">
+                                <a href="/Account/SignIn" class="btn btn-outline-secondary" style="border-radius: 25px;">უკან</a>
                             </div>
                         </form>
                     </div>

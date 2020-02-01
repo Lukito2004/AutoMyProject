@@ -70,6 +70,7 @@ namespace AutoMyWebsite
                 options.Password.RequireNonAlphanumeric = false;
                 options.Password.RequireUppercase = false;
                 options.Password.RequireLowercase = false;
+                options.User.RequireUniqueEmail = true;
             });
         }
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
