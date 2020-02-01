@@ -15,7 +15,6 @@ namespace AutoMyWebsite.Models
         public int Id { get; set; }
         public string AccountId { get; set; }
         public int CategoryId { get; set; }
-        public string Name { get; set; }
         public string CityName { get; set; }
         public string VinCode { get; set; }
         public BuyType buyType { get; set; }
@@ -27,14 +26,15 @@ namespace AutoMyWebsite.Models
         public int VelocityOfEngine { get; set; }
         public int Mileage { get; set; }
         public int Cilinders { get; set; }
-        public string GearBox { get; set; }
+        public GearBoxType GearBox { get; set; }
         public LeadingWheels DriveWheels { get; set; }
         public string Doors { get; set; }
         public WheelType Wheel { get; set; }
         public string Color { get; set; }
         public string CabinColor { get; set; }
         public int AirbagCount { get; set; }
-        public LevyType Levied { get; set; }
+        public DateTime PostedTime { get; set; }
+        public bool Levied { get; set; }
         public bool Turbo { get; set; }
         public bool ABS { get; set; }
         public bool ElectronicWindows { get; set; }
@@ -58,6 +58,7 @@ namespace AutoMyWebsite.Models
         public string ImageUrl2 { get; set; }
         public string ImageUrl3 { get; set; }
 
+        public IEnumerable<SelectListItem> GearBoxListItem { get; set; }
         public IEnumerable<SelectListItem> FuelListItem { get; set; }
         public IEnumerable<SelectListItem> CategoryListItem { get; set; }
         public IEnumerable<SelectListItem> DriveWheelsListItem { get; set; }
@@ -66,7 +67,6 @@ namespace AutoMyWebsite.Models
     {
         public PostValidator()
         {
-            RuleFor(o => o.Name).NotEmpty();
             RuleFor(o => o.ImageUrl1).NotEmpty();
             RuleFor(o => o.ImageUrl2).NotEmpty();
             RuleFor(o => o.ImageUrl3).NotEmpty();

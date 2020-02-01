@@ -114,8 +114,7 @@ namespace AutoMyWebsite.Controllers
         }
 
         public async Task<IActionResult> ToMyPage()
-        { 
-
+        {
             Account account = await _userManager.GetUserAsync(HttpContext.User);
             
             Account realaccount = _userManager.Users.Where(o => o.Id == account.Id).Include(c => c.Posts).FirstOrDefault();
@@ -144,8 +143,8 @@ namespace AutoMyWebsite.Controllers
         [AllowAnonymous]
         public IActionResult IndexWithUsername(string Username)
         {
-            AccountViewModel account = _mapper.Map<AccountViewModel>(_mapper.Map<AccountDTO>(_userManager.Users.Where(o => o.UserName == Username).Include(p => p.Posts)));
-            return View("Index", account);
+            AccountViewModel accountViewModel = _mapper.Map<AccountViewModel>(_mapper.Map<AccountDTO>(_userManager.Users.Where(o => o.UserName == Username).Include(p => p.Posts).FirstOrDefault()));
+            return View("Index", accountViewModel);
         }
 
         [AllowAnonymous]
@@ -201,5 +200,9 @@ namespace AutoMyWebsite.Controllers
             await _signInManager.SignOutAsync();
             return View("SignIn");
         }
+
+        [AllowAnonymous]
+        public async Task<IActionResult> ReturnPhoneNumber(string accountId) => Json((await _userManager.FindByIdAsync(accountId)).PhoneNumber);
+
     }
 }

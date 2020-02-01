@@ -10,314 +10,399 @@
             text-decoration: none;
             color: black;
         }
-        a:hover {
-            text-decoration: none;
-            color: black;
-            cursor: pointer;
+
+            a:hover {
+                text-decoration: none;
+                color: black;
+                cursor: pointer;
+            }
+
+        .my-car {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .fa-check {
+            color: green;
+        }
+
+        .fa-times {
+            color: red;
         }
     </style>
+    <link href="~/css/fontawesome-free-5.12.0-web/css/all.css" rel="stylesheet">
 </head>
-<body onload="OnBodyLoad()">
-    @*<div>
-        <h4>PostViewModel</h4>
-        <hr />
-        <dl class="row">
-            <dt class="col-sm-2">
-                Poster
-            </dt>
-            <dd class="col-sm-10" id="UsernameId"></dd>
-            <dt class="col-sm-2">
-                Category
-            </dt>
-            <dd class="col-sm-10" id="CategoryId"></dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Name)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.Name)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Price)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.Price)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.ImageUrl)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.ImageUrl)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Company)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.Company)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Model)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.Model)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.PublishingYear)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.PublishingYear)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.fuelType)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.fuelType)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.VelocityOfEngine)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.VelocityOfEngine)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.DistanceDrove)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.DistanceDrove)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Cilinders)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.Cilinders)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.GearBox)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.GearBox)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.DriveWheels)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.DriveWheels)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Doors)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.Doors)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Wheel)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.Wheel)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Color)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.Color)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.CabinColor)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.CabinColor)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.AirbagCount)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.AirbagCount)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.ABS)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.ABS)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.ElectronicWindows)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.ElectronicWindows)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.AirConditioner)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.AirConditioner)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.ClimateControl)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.ClimateControl)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.LeatherSaloon)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.LeatherSaloon)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Disks)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.Disks)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Navigation)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.Navigation)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.CentralLocker)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.CentralLocker)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Hatch)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.Hatch)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Signaling)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.Signaling)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.OnBoardComputer)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.OnBoardComputer)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Hydraulics)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.Hydraulics)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.AntiSkid)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.AntiSkid)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.ArmchairsHeating)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.ArmchairsHeating)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.ParkingControl)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.ParkingControl)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.BackViewCamera)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.BackViewCamera)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.TechBrowsing)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.TechBrowsing)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Description)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.Description)
-            </dd>
-        </dl>
-    </div>*@
-    <div id="ReportEditDiv"></div>
-    <script>
-        var SlideBoolean = true;
-        function ReturnUsername()
-        {
-            $.ajax({
-                type: "GET",
-                url: "/Account/ReturnPosterUsername?usernameId=@Model.AccountId",
-                success: function (result)
-                {
-                    document.querySelector("#UsernameId").innerHTML = `<b><a href="/Account/IndexWithUsername?Username=${result}">${result}</a></b>`;
-                }
-            });
-        }
-        function ReturnCategory()
-        {
-            $.ajax({
-                type: "GET",
-                url: "/Post/ReturnCategory?CategoryId=@Model.CategoryId",
-                success: function (result)
-                {
-                    document.querySelector("#CategoryId").innerHTML = result;
-                }
-            });
-        }
-        function OnReportButtonClick()
-        {
-            if (SlideBoolean)
-            {
-                $("#Formio").slideDown(750);
-                SlideBoolean = false;
+<body onload="OnBodyLoad()" style="background-color: #F5F5F5;">
+
+    <div class="container" style="background-color: #fff;border-radius: 5px;">
+        <div class="row " style="margin-top: 5%;padding: 20px;">
+            <div style="height: auto;" id="demo" class="carousel slide col-lg-6" data-ride="carousel">
+                <ul class="carousel-indicators">
+                    <li data-target="#demo" data-slide-to="0" class="active"></li>
+                    <li data-target="#demo" data-slide-to="1"></li>
+                    <li data-target="#demo" data-slide-to="2"></li>
+                </ul>
+                <div class="carousel-inner" style="text-align: center;">
+                    <div class="carousel-item active">
+                        <img class="my-car" src="@Model.ImageUrl1" id="FirstImage">
+                    </div>
+                    <div class="carousel-item">
+                        <img class="my-car" id="SecondImage">
+                    </div>
+                    <div class="carousel-item">
+                        <img class="my-car" id="ThirdImage">
+                    </div>
+                </div>
+                <a class="carousel-control-prev" href="#demo" data-slide="prev">
+                    <span class="carousel-control-prev-icon"></span>
+                </a>
+                <a class="carousel-control-next" href="#demo" data-slide="next">
+                    <span class="carousel-control-next-icon"></span>
+                </a>
+            </div>
+            <div class="col-lg-6">
+                <h1 style="font-size: 20px;">@Model.buyType.ToString() @Model.Company) @Model.Model | @Model.fuelType.ToString() | @Model.CityName </h1>
+                <p style="margin-top: 25px;">@Model.Description</p>
+            </div>
+            <div class="col-lg-12 d-flex justify-content-center" style="text-align: center;margin-top: 24px;">
+                <table class="table table-bordered table-sm table-striped">
+                    <tbody>
+                        <tr>
+                            <td>მწარმოებელი: @Model.Company</td>
+                            @if (Model.ABS)
+                            {
+                                <td>ABS: <i class="fas fa-check"></i></td>
+                            }
+                            else
+                            {
+                                <td>ABS: <i class="fas fa-times"></i></td>
+                            }
+                        </tr>
+                        <tr>
+                            <td>მოდელი: @Model.Model</td>
+                            @if (Model.ElectronicWindows)
+                            {
+                                <td>ელ. შუშები: <i class="fas fa-check"></i></td>
+                            }
+                            else
+                            {
+                                <td>ელ. შუშები: <i class="fas fa-times"></i></td>
+                            }
+                        </tr>
+                        <tr>
+                            <td>გამოშვების წელი: @Model.PublishingYear</td>
+                            @if (Model.AirConditioner)
+                            {
+                                <td>კონდიციონერი: <i class="fas fa-check"></i></td>
+                            }
+                            else
+                            {
+                                <td>კონდიციონერი: <i class="fas fa-times"></i></td>
+                            }
+                        </tr>
+                        <tr>
+                            <td>კატეგორია: <span id="CategoryId"></span></td>
+                            @if (Model.ClimateControl)
+                            {
+                                <td>კლიმატკონტროლი: <i class="fas fa-check"></i></td>
+                            }
+                            else
+                            {
+                                <td>კლიმატკონტროლი: <i class="fas fa-times"></i></td>
+                            }
+                        </tr>
+                        <tr>
+                            <td>საწვავის ტიპი: @Model.fuelType.ToString() </td>
+                            @if (Model.LeatherSaloon)
+                            {
+                                <td>ტყავის სალონი: <i class="fas fa-check"></i></td>
+                            }
+                            else
+                            {
+                                <td>ტყავის სალონი: <i class="fas fa-times"></i></td>
+                            }
+                        </tr>
+                        <tr>
+                            <td>ძრავის მოცულობა </td>
+                            @if (Model.Disks)
+                            {
+                                <td>დისკები: <i class="fas fa-check"></i></td>
+                            }
+                            else
+                            {
+                                <td>დისკები: <i class="fas fa-times"></i></td>
+                            }
+                        </tr>
+                        <tr>
+                            <td>გარბენი: @Model.Mileage კმ</td>
+                            @if (Model.Navigation)
+                            {
+                                <td>ნავიგაცია: <i class="fas fa-check"></i></td>
+                            }
+                            else
+                            {
+                                <td>ნავიგაცია: <i class="fas fa-times"></i></td>
+                            }
+                        </tr>
+                        <tr>
+                            <td>ცილინდრები:  </td>
+                            @if (Model.Hatch)
+                            {
+                                <td>ლუქი: <i class="fas fa-check"></i></td>
+                            }
+                            else
+                            {
+                                <td>ლუქი: <i class="fas fa-times"></i></td>
+                            }
+                        </tr>
+                        <tr>
+                            <td>გადაცემათა კოლოფი: @Model.GearBox.ToString()s</td>
+                            @if (Model.Signaling)
+                            {
+                                <td>სიგნალიზაცია: <i class="fas fa-check"></i></td>
+                            }
+                            else
+                            {
+                                <td>სიგნალიზაცია: <i class="fas fa-times"></i></td>
+                            }
+                        </tr>
+                        <tr>
+                            <td>წამყვანი თვლები: @Model.DriveWheels.ToString() </td>
+                            @if (Model.OnBoardComputer)
+                            {
+                                <td>ბორტკომპიუტერი: <i class="fas fa-check"></i></td>
+                            }
+                            else
+                            {
+                                <td>ბორტკომპიუტერი: <i class="fas fa-times"></i></td>
+                            }
+                        </tr>
+                        <tr>
+                            <td>კარები: @Model.Doors </td>
+                            @if (Model.Hydraulics)
+                            {
+                                <td>ჰიდრავლიკა: <i class="fas fa-check"></i></td>
+                            }
+                            else
+                            {
+                                <td>ჰიდრავლიკა: <i class="fas fa-times"></i></td>
+                            }
+
+                        </tr>
+                        <tr>
+                            <td>ფერი: @Model.Color</td>
+                            @if (Model.AntiSkid)
+                            {
+                                <td>მოცურების საწინააღმდეგო: <i class="fas fa-check"></i></td>
+                            }
+                            else
+                            {
+                                <td>მოცურების საწინააღმდეგო: <i class="fas fa-times"></i></td>
+                            }
+                        </tr>
+                        <tr>
+                            <td>სალონის ფერი: @Model.CabinColor</td>
+                            @if (Model.ArmchairsHeating)
+                            {
+                                <td>სავარძლების გათბობა: <i class="fas fa-check"></i></td>
+                            }
+                            else
+                            {
+                                <td>სავარძლების გათბობა: <i class="fas fa-times"></i></td>
+                            }
+                        </tr>
+                        <tr>
+                            <td>აირბეგი: @Model.AirbagCount</td>
+                            @if (Model.ParkingControl)
+                            {
+                                <td>პარკინგკონტროლი: <i class="fas fa-check"></i></td>
+                            }
+                            else
+                            {
+                                <td>პარკინგკონტროლი: <i class="fas fa-times"></i></td>
+                            }
+                        </tr>
+                        <tr>
+                            <td>VIN: @Model.VinCode</td>
+                            @if (Model.BackViewCamera)
+                            {
+                                <td>უკანა ხედვის კამერა: <i class="fas fa-check"></i></td>
+                            }
+                            else
+                            {
+                                <td>უკანა ხედვის კამერა: <i class="fas fa-times"></i></td>
+                            }
+                        </tr>
+                        <tr>
+                            @if (Model.CentralLocker)
+                            {
+                                <td>ცენტრალური საკეტი: <i class="fas fa-check"></i></td>
+                            }
+                            else
+                            {
+                                <td>ცენტრალური საკეტი: <i class="fas fa-times"></i></td>
+                            }
+                            @if (Model.TechInspection)
+                            {
+                                <td>ტექ. დათვალიერება: <i class="fas fa-check"></i></td>
+                            }
+                            else
+                            {
+                                <td>ტექ. დათვალიერება: <i class="fas fa-times"></i></td>
+                            }
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-sm-12 ">
+                <div style="overflow-x:auto;">
+
+                    <table class=" table table-bordered table-sm" border="1">
+                        <tr>
+                            <td rowspan="2">
+                                <p>თანხა: '@Model.Price'ლარი </p>
+                                @if (Model.Levied)
+                                {
+                                    <p>განბაჟებულია</p>
+                                }
+                                else
+                                {
+                                    <p>გაუნბაჟებულია</p>
+                                }
+                            </td>
+                            @*<td>
+                                <p>ID : 4546587</p>
+                            </td>*@
+                            <td>
+                                <p>ქალაქი: @Model.CityName</p>
+                            </td>
+                            <td>
+                                <p>პოსტის გამოქვეყნების თარიღი: @Model.PostedTime</p>
+                            </td>
+                            @*<td>
+                                <p> ნახვები : </p>
+                            </td>*@
+                        </tr>
+                        <tr>
+                            <td>
+                                <p id="UsernameId"></p>
+                            </td>
+                            <td>
+                                <p class="text-danger" id="PhoneNumberId"></p>
+                            </td>
+                            <td>
+                                <a class="text-danger" href="/Post/Index">ყველა განცხადება</a>
+                            </td>
+                            @*<td>
+                                <p>წერილის მიწერა</p>
+                            </td>*@
+                        </tr>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+        <div id="ReportEditDiv"></div>
+        <script>
+            var FirstImage = "@Model.ImageUrl1";
+            //alert(FirstImage);
+            function readURL() {
+                var reader = new FileReader();
+                var myblob = new Blob([FirstImage], {
+                     type: 'text/plain'
+                });
+
+                reader.addEventListener("load", function (e) {
+                    $('#FirstImage').attr('src', e.target.result);
+                });
+
+                reader.readAsText(myblob);
             }
-            else
+            function ReturnUsername()
             {
-                $("#Formio").slideUp(750);
-                SlideBoolean = true;
+                $.ajax({
+                    type: "GET",
+                    url: "/Account/ReturnPosterUsername?usernameId=@Model.AccountId",
+                    success: function (result)
+                    {
+                        document.querySelector("#UsernameId").innerHTML = `<b><a href="/Account/IndexWithUsername?Username=${result}">${result}</a></b>`;
+                    }
+                });
             }
-        }
-        function ReportOrEdit()
-        {
-            $.ajax({
-                type: "GET",
-                url: "/Account/ReturnId",
-                success: function (result)
+            function ReturnCategory()
+            {
+                $.ajax({
+                    type: "GET",
+                    url: "/Post/ReturnCategory?CategoryId=@Model.CategoryId",
+                    success: function (result)
+                    {
+                        document.querySelector("#CategoryId").innerHTML = result;
+                    }
+                });
+            }
+            function ReturnPhoneNumber()
+            {
+                $.ajax({
+                    type: "GET",
+                    url: "/Account/ReturnPhoneNumber?accountId=@Model.AccountId",
+                    success: function (result)
+                    {
+                        document.querySelector("#PhoneNumberId").innerHTML = "ტელეფონის ნომერი: " + result;
+                    }
+                });
+            }
+            function OnReportButtonClick()
+            {
+                if (SlideBoolean)
                 {
-                    if ("@Model.AccountId" == result)
-                        document.querySelector("#ReportEditDiv").innerHTML = `<a href="/Post/Edit?id=@Model.Id" class="btn btn-primary">Edit</a>`;
-                    else if (result != 0 && result != null && result != "" && result != " ")
-                        document.querySelector("#ReportEditDiv").innerHTML = 
-                        `<button class="btn btn-primary" onclick="OnReportButtonClick()">Report</button>
-                        <div style="display:none" id="Formio">
-                            <input id="PostIdInput" hidden="hidden" style="margin-top: 10px;" value=@Model.Id name="postId">
-                            <textarea id="ReasonInput" name="reason" style="display: block; margin-top: 10px;"></textarea>
-                            <button onclick="OnSubmitButtonClick()" style="margin-top: 10px;" class="btn btn-primary">Submit</button>
-                            <p id="ComebackP" style="color: red; font-size: 17px; margin-top: 5px;"></p>
-                        </div>`;
+                    $("#Formio").slideDown(750);
+                    SlideBoolean = false;
                 }
-            });
-        }
-        function OnSubmitButtonClick()
-        {
-            $.ajax({
-                type: "POST",
-                url: "/Post/Report",
-                data: { postId: parseInt(document.querySelector("#PostIdInput").value), reason: document.querySelector("#ReasonInput").value },
-                success: function (result)
+                else
                 {
-                    document.querySelector("#ComebackP").textContent = result;
+                    $("#Formio").slideUp(750);
+                    SlideBoolean = true;
                 }
-            });
-        }
-        function OnBodyLoad()
-        {
-            ReturnUsername();
-            ReturnCategory();
-            ReportOrEdit();
-        }
-    </script>
+            }
+            function ReportOrEdit()
+            {
+                $.ajax({
+                    type: "GET",
+                    url: "/Account/ReturnId",
+                    success: function (result)
+                    {
+                        if ("@Model.AccountId" == result)
+                            document.querySelector("#ReportEditDiv").innerHTML = `<a href="/Post/Edit?id=@Model.Id" class="btn btn-primary">Edit</a>`;
+                        else if (result != 0 && result != null && result != "" && result != " ")
+                            document.querySelector("#ReportEditDiv").innerHTML =
+                            `<button class="btn btn-primary" onclick="OnReportButtonClick()">Report</button>
+                            <div style="display:none" id="Formio">
+                                <input id="PostIdInput" hidden="hidden" style="margin-top: 10px;" value=@Model.Id name="postId">
+                                <textarea id="ReasonInput" name="reason" style="display: block; margin-top: 10px;"></textarea>
+                                <button onclick="OnSubmitButtonClick()" style="margin-top: 10px;" class="btn btn-primary">Submit</button>
+                                <p id="ComebackP" style="color: red; font-size: 17px; margin-top: 5px;"></p>
+                            </div>`;
+                    }
+                });
+            }
+            function OnSubmitButtonClick()
+            {
+                $.ajax({
+                    type: "POST",
+                    url: "/Post/Report",
+                    data: { postId: parseInt(document.querySelector("#PostIdInput").value), reason: document.querySelector("#ReasonInput").value },
+                    success: function (result)
+                    {
+                        document.querySelector("#ComebackP").textContent = result;
+                    }
+                });
+            }
+            function OnBodyLoad()
+            {
+                ReturnUsername();
+                ReturnCategory();
+                ReturnPhoneNumber();
+                ReportOrEdit();
+            }
+        </script>
 </body>

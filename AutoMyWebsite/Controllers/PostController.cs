@@ -48,6 +48,7 @@ namespace AutoMyWebsite.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(PostViewModel post)
         {
+            post.PostedTime = DateTime.Now.Date;
             post.AccountId = (await _userManager.GetUserAsync(HttpContext.User)).Id;
             postService.AddPost(mapper.Map<PostDTO>(post));
             return View("Details", post);
@@ -94,7 +95,6 @@ namespace AutoMyWebsite.Controllers
             return View("Index", accountViewModels);
         }
 
-        public IActionResult ReturnPostName(int id) => Json(postService.GetPostWithId(id).Name);
 
         public IActionResult Reports() => View(mapper.Map<List<ReportViewModel>>(postService.GetAllReports()));
 
@@ -108,6 +108,11 @@ namespace AutoMyWebsite.Controllers
                     Value = ((int)v).ToString()
                 }).ToList();
                 post.FuelListItem = Enum.GetValues(typeof(FuelType)).Cast<FuelType>().Select(v => new SelectListItem
+                {
+                    Text = v.ToString(),
+                    Value = ((int)v).ToString()
+                }).ToList();
+                post.GearBoxListItem = Enum.GetValues(typeof(GearBoxType)).Cast<GearBoxType>().Select(v => new SelectListItem
                 {
                     Text = v.ToString(),
                     Value = ((int)v).ToString()
