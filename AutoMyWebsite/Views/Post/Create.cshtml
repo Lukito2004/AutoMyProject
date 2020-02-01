@@ -2,10 +2,7 @@
 @{
     ViewData["Title"] = "Create";
 }
-<h2>Create</h2>
 
-<h4>PostViewModel</h4>
-<hr />
 <head>
     <style>
         .titleofbuy {
@@ -254,27 +251,33 @@
                     <div class="row">
 
                         <div class="col-sm-6 d-flex flex-column">
-                            <label for="category">
                                 <p class="mrg"> კატეგორია :</p>
+                            <label for="category">
                                 @Html.DropDownListFor(o => o.CategoryId, Model.CategoryListItem, new { @class = "form-control" })
                             </label>
+                            <p class="mrg"> პროდუსერი :</p>
                             <label for="producer">
-                                <p class="mrg"> პროდუსერი :</p> <input type="text" asp-for="Company" id="producer" class="form-control" placeholder="Producer">
+                                <input type="text" asp-for="Company" id="producer" class="form-control" placeholder="Producer">
                             </label>
+                            <p class="mrg"> მოდელი : </p>
                             <label for="model">
-                                <p class="mrg"> მოდელი : </p> <input type="text" id="model" class="form-control" asp-for="Model" placeholder="Model">
+                                <input type="text" id="model" class="form-control" asp-for="Model" placeholder="Model">
                             </label>
+                            <p class="mrg"> გამოშვების წელი : </p>
                             <label for="outputofyear">
-                                <p class="mrg"> გამოშვების წელი : </p> <input type="number" id="outputofyear" class="form-control" asp-for="PublishingYear" placeholder="Publishing Year">
+                                <input type="number" id="outputofyear" class="form-control" asp-for="PublishingYear" placeholder="Publishing Year">
                             </label>
+                            <p class="mrg"> გარბენი :</p>
                             <label for="Mileage">
-                                <p class="mrg"> გარბენი :</p> <input type="number" id="Mileage" class="form-control" asp-for="Mileage" placeholder="Mileage">
+                                <input type="number" id="Mileage" class="form-control" asp-for="Mileage" placeholder="Mileage">
                             </label>
+                            <p class="mrg"> VIN კოდი : </p>
                             <label for="VinCode">
-                                <p class="mrg"> VIN კოდი : </p> <input type="text" id="VinCode" class="form-control" asp-for="VinCode" placeholder="VIN Code">
+                                <input type="text" id="VinCode" class="form-control" asp-for="VinCode" placeholder="VIN Code">
                             </label>
+                            <p class="mrg"> გადაცემის კოლოფი : </p>
                             <label for="gearbox">
-                                <p class="mrg"> გადაცემის კოლოფი : </p><input type="text" class="form-control" id="gearbox" asp-for="GearBox" placeholder="Gear box">
+                                <input type="text" class="form-control" id="gearbox" asp-for="GearBox" placeholder="Gear box">
                             </label>
                             <p class="mrg"> ძრავის მოცულობა :</p>
                             <input type="text" class="form-control" id="sizeofmotor" asp-for="VelocityOfEngine" placeholder="Size of motor">
@@ -286,24 +289,29 @@
                             </div>
                         </div>
                         <div class="col-sm-6 d-flex flex-column">
-
+                            <p class="mrg"> ცილინდრების რაოდენობა : </p>
                             <label for="barrel">
-                                <p class="mrg"> ცილინდრების რაოდენობა : </p><input id="barrel" class="form-control" asp-for="Cilinders" placeholder="Barrel">
+                               <input id="barrel" class="form-control" asp-for="Cilinders" placeholder="Barrel">
                             </label>
+                            <p class="mrg"> კარები : </p>
                             <label for="door">
-                                <p class="mrg"> კარები : </p><input id="door" asp-for="Doors" class="form-control" placeholder="Door">
+                                <input id="door" asp-for="Doors" class="form-control" placeholder="Door">
                             </label>
+                            <p class="mrg"> საწვავის ტიპი :</p>
                             <label for="kindoffuel">
-                                <p class="mrg"> საწვავის ტიპი :</p> @Html.DropDownListFor(o => o.fuelType, Model.FuelListItem, new { @class = "form-control" })
+                                @Html.DropDownListFor(o => o.fuelType, Model.FuelListItem, new { @class = "form-control" })
                             </label>
+                            <p class="mrg"> წამყვანი თვლები :</p>
                             <label for="drivewheels">
-                                <p class="mrg"> წამყვანი თვლები :</p> @Html.DropDownListFor(o => o.DriveWheels, Model.DriveWheelsListItem, new { @class = "form-control" })
+                                @Html.DropDownListFor(o => o.DriveWheels, Model.DriveWheelsListItem, new { @class = "form-control" })
                             </label>
+                            <p class="mrg"> ფერი :</p>
                             <label for="color">
-                                <p class="mrg"> ფერი :</p> <input type="text" id="color" asp-for="Color" placeholder="Color " class="form-control">
+                                <input type="text" id="color" asp-for="Color" placeholder="Color " class="form-control">
                             </label>
+                            <p class="mrg"> კაბინის ფერი :</p>
                             <label for="colorofcabin">
-                                <p class="mrg"> კაბინის ფერი :</p> <input type="text" id="colorofcabin" class="form-control" asp-for="CabinColor" placeholder="Color of cabin">
+                                <input type="text" id="colorofcabin" class="form-control" asp-for="CabinColor" placeholder="Color of cabin">
                             </label>
                         </div>
                     </div>
@@ -314,9 +322,7 @@
                 <hr>
 
                 <div class="comfortandother row">
-
-
-                    <div class="firstside col-sm-4">
+                    <div class="firstside col-lg-4">
                         <h4 style="text-align: center;">საჭე</h4>
                         <fieldset>
                             <div class="steeringWheelSide border border-top-0 ">
@@ -347,7 +353,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="secondside col-sm-4">
+
+                    <div class="secondside col-lg-4">
                         <div class="custom-control custom-switch">
                             <input asp-for="Hatch" type="checkbox" class="custom-control-input" id="sealingWax">
                             <label class="custom-control-label" for="sealingWax">ლუქი</label>
@@ -373,7 +380,7 @@
                             <label class="custom-control-label" for="signalisation">სიგნალიზაცია</label>
                         </div>
                     </div>
-                    <div class="thirdside col-sm-4">
+                    <div class="thirdside col-lg-4">
                         <div class="custom-control custom-switch">
                             <input asp-for="OnBoardComputer" type="checkbox" class="custom-control-input" id="onBoardComputer">
                             <label class="custom-control-label" for="onBoardComputer">ბორტკომპიუტერი</label>
@@ -462,8 +469,9 @@
                 <hr>
                 <div class="mainService row">
                     <div class="col-sm-6">
+                        <p class="mrg">მდებარეობა ქალაქი</p>
                         <label for="location">
-                            <p class="mrg">მდებარეობა ქალაქი</p> <input asp-for="CityName" type="text" id="location" class="form-control">
+                            <input asp-for="CityName" type="text" id="location" class="form-control">
                         </label>
                     </div>
 
@@ -492,12 +500,14 @@
                     <div class="col-sm-12">
                         <div class="row">
                             <div class="col-sm-6">
-                                <label for="price">
                                     <p class="mrg">ფასი</p>
+                                <label for="price">
                                     <input asp-for="Price" type="number" id="price" class="form-control">
                                 </label>
                             </div>
-                            <div class="col-sm-6 d-flex justify-content-center align-items-end">
+                            <div class="col-sm-6 d-flex justify-content-start align-items-end">
+
+                                <a href="#" class="btn btn-outline-secondary" style="margin-right:20px;"> უკან </a>
                                 <button type="submit" class="btn btn-outline-secondary"> ატვირთვა</button>
                             </div>
                         </div>
