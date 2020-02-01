@@ -34,8 +34,8 @@
             </div>
             <div class="form-group">
                 <label class="control-label">Image Url</label>
-                <input asp-for="ImageUrl" class="form-control" />
-                <span asp-validation-for="ImageUrl" class="text-danger"></span>
+                @*<input asp-for="ImageUrl" class="form-control" />
+                <span asp-validation-for="ImageUrl" class="text-danger"></span>*@
             </div>
             <div class="form-group">
                 <label class="control-label">Category</label>
@@ -67,8 +67,8 @@
             </div>
             <div class="form-group">
                 <label class="control-label">Distance Drove</label>
-                <input asp-for="DistanceDrove" class="form-control" />
-                <span asp-validation-for="DistanceDrove" class="text-danger"></span>
+                <input asp-for="Mileage" class="form-control" />
+                <span asp-validation-for="Mileage" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Cilinders" class="control-label"></label>
@@ -92,7 +92,7 @@
             </div>
             <div class="form-group">
                 <label class="control-label">Wheel</label>
-                @Html.DropDownListFor(o => o.Wheel, Model.WheelsListItem, new { @class = "form-control" })
+                @*@Html.DropDownListFor(o => o.Wheel, Model.WheelsListItem, new { @class = "form-control" })*@
             </div>
             <div class="form-group">
                 <label class="control-label">Color</label>
@@ -191,7 +191,7 @@
             </div>
             <div class="form-group form-check">
                 <label class="form-check-label">
-                    <input class="form-check-input" asp-for="TechBrowsing" /> @Html.DisplayNameFor(model => model.TechBrowsing)
+                    <input class="form-check-input" asp-for="TechInspection" /> @Html.DisplayNameFor(model => model.TechInspection)
                 </label>
             </div>
             <div class="form-group">

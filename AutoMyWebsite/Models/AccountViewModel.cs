@@ -31,6 +31,10 @@ namespace AutoMyWebsite.Models
             RuleFor(o => o.LastName).NotEmpty();
             RuleFor(o => o.Username).NotEmpty();
             RuleFor(o => o.Password).NotEmpty();
+            RuleFor(o => o.Email).NotEmpty();
+            RuleFor(o => o.PhoneNumber).NotEmpty();
+            RuleFor(o => o.DateOfBirth).NotEmpty();
         }
+ 
     }
 }

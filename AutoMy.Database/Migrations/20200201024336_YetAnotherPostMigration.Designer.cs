@@ -4,14 +4,16 @@ using AutoMy.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AutoMy.Database.Migrations
 {
     [DbContext(typeof(AutoMyDBContext))]
-    partial class AutoMyDBContextModelSnapshot : ModelSnapshot
+    [Migration("20200201024336_YetAnotherPostMigration")]
+    partial class YetAnotherPostMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -193,15 +195,7 @@ namespace AutoMy.Database.Migrations
                     b.Property<bool>("Hydraulics")
                         .HasColumnType("bit");
 
-                    b.Property<string>("ImageUrl1")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ImageUrl2")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ImageUrl3")
+                    b.Property<string>("ImageUrl")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 

@@ -25,8 +25,6 @@ namespace AutoMyWebsite.Controllers
         private readonly UserManager<Account> _userManager;
         private readonly SignInManager<Account> _signInManager;
         private readonly RoleManager<IdentityRole> _roleManager;
-        private readonly string hey = "wtf";
-        private readonly string hey1 = "hi wtff";
 
         private readonly IMapper _mapper;
 
@@ -116,7 +114,8 @@ namespace AutoMyWebsite.Controllers
         }
 
         public async Task<IActionResult> ToMyPage()
-        {
+        { 
+
             Account account = await _userManager.GetUserAsync(HttpContext.User);
             
             Account realaccount = _userManager.Users.Where(o => o.Id == account.Id).Include(c => c.Posts).FirstOrDefault();
