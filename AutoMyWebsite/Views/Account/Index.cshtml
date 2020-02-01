@@ -12,12 +12,11 @@
     //}
 }
 
-<h1>Hello @Model.Username</h1>
 
 <head>
     <meta charset="UTF-8">
     <style>
-        .UserSection {
+        /*.UserSection {
             width: 100%;
         }
         .UserInformation {
@@ -63,14 +62,58 @@
         .PostDiv img {
             width: 100%;
             height: 150px;
+        }*/
+            body,html{
+        width:100%;
+        height: 100vh;
+        padding: 0px;
+        margin: 0px;
+    }
+
+
+
+    .container-fluid{
+        height: 100%;
+    }
+
+    .img{
+        max-width: 100%;
+    }
+    .inventar-img{
+        width: 600px;
+        max-width: 100%;
+
+    }
+
+    .my-a{
+        width: 100%;
+        font-size: 15px;
+        margin-bottom: 20px;
+        margin-top: 20px;
+    }
+
+.my-col{
+    text-align: left;
+}
+
+.my-choose{
+    display: flex;
+    flex-direction: column;
+    align-self: flex-end;
+}
+
+        .my-paragraph {
+        
+            display:none;
+        
         }
     </style>
 </head>
 <body onload="OnBodyLoad()">
     <main>
-        <section class="UserSection">
+        @*<section class="UserSection">
             <div class="UserInformation">
-                @if (Model.ImageUrl != null)
+               @if (Model.ImageUrl != null)
                 {
                     <img src="@Model.ImageUrl" />
                 }
@@ -78,27 +121,28 @@
                 {
                     <img src="~/Source/user-default.jpg" />
                 }
-                <p id="UsernameP">@Model.Username</p>
                 <p class="Name">@Model.FirstName @Model.LastName</p>
                 <p class="Number">Number: @Model.PhoneNumber</p>
-            </div>
-            <div id="PostEditDiv">
-                @*@if (SomeBoolean)
-                {
-                    <a class="btn btn-primary" href="/Post/Create">Post!</a>
-                    <a class="btn btn-primary" href="/Account/Edit">Edit Account</a>
-                }*@
-                @*@if (AccountBoolean)
-                {
-                    <a class="btn btn-primary" href="/Post/Reports">Reports</a>
-                }*@
-            </div>
-        </section>
-        <section class="PostSection">
-            @foreach(var post in Model.Posts)
+           </div>
+           <div id="PostEditDiv">
+                @if (SomeBoolean)
+                    {
+                        <a class="btn btn-primary" href="/Post/Create">Post!</a>
+                        <a class="btn btn-primary" href="/Account/Edit">Edit Account</a>
+                    }
+                @if (AccountBoolean)
+                    {
+                        <a class="btn btn-primary" href="/Post/Reports">Reports</a>
+                    }
+              </div>
+        </section>*@
+
+
+        @*<section class="PostSection">
+            @foreach (var post in Model.Posts)
             {
                 <div class="PostDiv" id="@post.CategoryId">
-     @*               <img src=@post.ImageUrl />*@
+                        <img src=@post.ImageUrl />
                     <p class="PostName">@post.Name</p>
                     <p id="CategoryId"></p>
                     <p class="PostPrice">Price: @post.Price$</p>
@@ -108,9 +152,83 @@
                     <a class="btn btn-primary" href=@Url.Action("Details", "Post", new { Postid = post.Id })>Details</a>
                 </div>
             }
-        </section>
+        </section>*@
     </main>
-    <script>
+
+    <div class="container-fluid ">
+        <div class="row">
+
+            <div class="col-md-10 my-col border-bottom shadow-sm p-3 mb-5 ">
+                <div>
+                    @if (Model.ImageUrl != null)
+                    {
+                        <img class="img rounded" src="@Model.ImageUrl" width="200" />
+                    }
+                    else
+                    {
+                        <img src="~/Source/user-default.jpg" class="img rounded" width="200" />
+                    }
+                    <p id="UsernameP" class="my-paragraph">@Model.Username</p>
+
+                    <h1 style="font-size: 20px;"> @Model.FirstName @Model.LastName </h1>
+                </div>
+
+            </div>
+            <div class="col-md-2  my-choose border-bottom shadow-sm p-3 mb-5 ">
+                <div id="PostEditDiv">
+            
+                </div>
+
+               
+
+                @*<a class="btn btn-lg btn-outline-secondary my-a" href="#"> შექმენი განცხადება </a>
+                <a class="btn btn-lg btn-outline-secondary my-a" href="#"> შეცვალე შენი პროფილი</a>*@
+
+            </div>
+
+
+            <div class="col-sm-12" style="margin-top: 20%;">
+                <div>
+                    <hr>
+                    <h1>შენი პროდუქტი</h1>
+                    <hr>
+                </div>
+
+                <div class="col-sm-12">
+                    <div class="row" style="padding: 0;margin: 0;">
+                        @foreach (var post in Model.Posts)
+                        {
+
+                            <div class="col-md-3 my-card" style="margin-bottom: 25px;">
+                                <div class="card" style="width: 20rem;">
+                                    <div style="height:300px;">
+
+                                        <img class="inventar-img" src="@post.ImageUrl1 ">
+                                   
+                                    </div>
+
+                                    <div class="card-body">
+                                        <h5 class="card-title">@post.Name</h5>
+                                        <p class="card-text">Price: @post.Price$</p>
+                                        <p class="card-text">Company: @post.Company</p>
+                                        <p class="card-text">Model: @post.Model</p>
+                                        <p class="card-text">Year: @post.PublishingYear</p>
+
+                                        <a href=@Url.Action("Details", "Post", new { Postid = post.Id }) class="btn btn-outline-success">დეტალები</a>
+                                    </div>
+                                </div>
+
+                            </div>
+                        }
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+        <script>
         var Counter = 0;
         var username = document.querySelector("#UsernameP").textContent;
         function IsAdminOrNot()
@@ -135,8 +253,9 @@
                 {
                     if (username == result)
                     {
-                        document.querySelector("#PostEditDiv").innerHTML = `<a class="btn btn-primary" href="/Post/Create">Post!</a>
-                        <a class="btn btn-primary" href="/Account/Edit">Edit Account</a>`;
+                        document.querySelector("#PostEditDiv").innerHTML = `<a class="btn btn-lg btn-outline-secondary my-a" href="/Post/Create">შექმენი განცხადება</a>
+                        <a class="btn   btn-lg btn-outline-secondary my-a" href="/Account/Edit"> შეცვალე შენი პროფილი</a>
+                        <a class="btn btn-lg btn-outline-secondary my-a" href="/Account/Details"> დეტალები შენზე </a>`;
                     }
                 }
             });
@@ -163,5 +282,5 @@
             IsAdminOrNot();
             ReturnCategory();
         }
-    </script>
+        </script>
 </body>
