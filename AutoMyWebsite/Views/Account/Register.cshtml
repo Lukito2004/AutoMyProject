@@ -41,50 +41,50 @@
 <main class="my-form">
     <div class="cotainer">
         <div class="row justify-content-center" style="padding: 0; margin: 0;">
-            <div class="col-md-8">
+            <div class="col-lg-8">
                 <div class="card">
                     <div class="card-header " style="color: orange;font-size: 20px;"> <span class="display-4"> AutoMy </span>- რეგისრაცია </div>
                     <div class="card-body">
                         <form name="my-form" masp-action="Register" asp-controller="Account" method="post">
                             <div asp-validation-summary="All" class="text-danger"></div>
                             <div class="form-group row">
-                                <label class="col-md-4 col-form-label text-md-right">სახელი</label>
-                                <div class="col-md-6">
+                                <label class="col-lg-4 col-form-label text-md-right">სახელი</label>
+                                <div class="col-lg-6">
                                     <input type="text" asp-for="FirstName" class="form-control">
                                     <span asp-validation-for="FirstName" class="text-danger"></span>
                                 </div>
                             </div>
 
                             <div class="form-group row">
-                                <label class="col-md-4 col-form-label text-md-right">გვარი</label>
-                                <div class="col-md-6">
+                                <label class="col-lg-4 col-form-label text-md-right">გვარი</label>
+                                <div class="col-lg-6">
                                     <input type="text" asp-for="LastName" class="form-control">
                                     <span asp-validation-for="LastName" class="text-danger"></span>
                                 </div>
                             </div>
 
                             <div class="form-group row">
-                                <label class="col-md-4 col-form-label text-md-right">
+                                <label class="col-lg-4 col-form-label text-md-right">
                                     მომხმარებლის
                                     სახელი
                                 </label>
-                                <div class="col-md-6">
+                                <div class="col-lg-6">
                                     <input type="text" asp-for="Username" class="form-control">
                                     <span asp-validation-for="Username" class="text-danger"></span>
                                 </div>
                             </div>
 
                             <div class="form-group row">
-                                <label class="col-md-4 col-form-label text-md-right">Email</label>
-                                <div class="col-md-6">
+                                <label class="col-lg-4 col-form-label text-md-right">Email</label>
+                                <div class="col-lg-6">
                                     <input type="text" asp-for="Email" class="form-control">
                                     <span asp-validation-for="Email" class="text-danger"></span>
                                 </div>
                             </div>
 
                             <div class="form-group row">
-                                <label class="col-md-4 col-form-label text-md-right">ნომერი</label>
-                                <div class="col-md-6">
+                                <label class="col-lg-4 col-form-label text-md-right">ნომერი</label>
+                                <div class="col-lg-6">
                                     <div class="input-group mb-3">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text">+995</span>
@@ -96,21 +96,21 @@
                             </div>
 
                             <div class="form-group row">
-                                <label class="col-md-4 col-form-label text-md-right">
+                                <label class="col-lg-4 col-form-label text-md-right">
                                     პაროლი
                                 </label>
-                                <div class="col-md-6">
+                                <div class="col-lg-6">
                                     <input type="password" asp-for="Password" class="form-control">
                                     <span asp-validation-for="Password" class="text-danger"></span>
                                 </div>
                             </div>
 
                             <div class="form-group row">
-                                <label class="col-md-4 col-form-label text-md-right">
+                                <label class="col-lg-4 col-form-label text-md-right">
                                     დაბადების
                                     თარიღი
                                 </label>
-                                <div class="col-md-6">
+                                <div class="col-lg-6">
                                     <input type="date" asp-for="DateOfBirth" class="form-control">
                                     <span asp-validation-for="DateOfBirth" class="text-danger"></span>
                                 </div>

@@ -28,29 +28,48 @@
         height: 150px;
     }
 </style>
-
-<h1>Index</h1>
-
 <body onload="OnBodyLoad()">
-    <form asp-action="Filter" asp-controller="Post" method="post">
-        <span style="margin-left: 5px;">Category:</span>
-        <select name="categoryId">
-            <option value=1>Economy</option>
-            <option value=2>Compact</option>
-            <option value=3>Compact Cambrio</option>
-            <option value=4>Intermediate Combi</option>
-            <option value=5>Luxury Car</option>
-            <option value=6>Luxury Convertible</option>
-            <option value=7>SUV</option>
-            <option value=8>Off Road 4x4</option>
-            <option value=9>Pick-up Car</option>
-        </select>
-        <span style="margin-left: 5px;">Costs More Than:</span>
-        <input type="number" name="GreaterThanMoney" />
-        <span style="margin-left: 5px;">Costs Less Than:</span>
-        <input type="number" name="LessThanMoney" />
-        <input type="submit" value="Filter" class="btn btn-primary" style="margin-left: 10px;" />
-    </form>
+    <div class="d-flex justify-content-center">
+
+        <form asp-action="Filter" asp-controller="Post" method="post">
+            <div class="row" style="margin:0px;padding:0px;">
+                <div class="col-lg-3">
+                    <h5 style="margin-left: 5px;margin-top:10px; margin-bottom:10px;">Category:</h5>
+                    <select name="categoryId" class="custom-select mb-3">
+                        <option value=1>Economy</option>
+                        <option value=2>Compact</option>
+                        <option value=3>Compact Cambrio</option>
+                        <option value=4>Intermediate Combi</option>
+                        <option value=5>Luxury Car</option>
+                        <option value=6>Luxury Convertible</option>
+                        <option value=7>SUV</option>
+                        <option value=8>Off Road 4x4</option>
+                        <option value=9>Pick-up Car</option>
+                    </select>
+                </div>
+                <div class="col-lg-3">
+                        <h5 style="margin-left: 5px;margin-top:10px; margin-bottom:10px;">Costs More Than:</h5>
+                    <div class="form-group">
+
+                        <input type="number"  class="form-control" name="GreaterThanMoney" />
+                    </div>
+
+                </div>
+                <div class="col-lg-3">
+                        <h5 style="margin-left: 5px;margin-top:10px; margin-bottom:10px;">Costs Less Than:</h5>
+                    <div class="form-group">
+                        <input type="number"  class="form-control" name="LessThanMoney" />
+                    </div>
+                </div>
+                    <div class="col-lg-3 d-flex align-items-center" >
+
+                        <input type="submit" value="Filter" class="btn btn-outline-secondary btn-md" style="margin-left: 10px;margin-top:28px;" />
+
+                    </div>
+                </div>
+        </form>
+    </div>
+
     <section class="PostSection">
         @foreach (var post in Model)
         {
@@ -70,8 +89,7 @@
     <script>
         var Divs = document.querySelectorAll(".PostDiv");
         var Counter = 0;
-        function OnBodyLoad()
-        {
+        function OnBodyLoad() {
             Divs.forEach(o => {
                 var categoryId = o.getAttribute("id");
                 $.ajax({
