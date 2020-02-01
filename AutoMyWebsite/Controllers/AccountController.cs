@@ -113,6 +113,15 @@ namespace AutoMyWebsite.Controllers
             return View(_mapper.Map<AccountViewModel>(_mapper.Map<AccountDTO>(account)));
         }
 
+        //public IActionResult Details(string username)
+        //{
+        //    Account account = _userManager.Users.Where(o => o.UserName == username).Include(p => p.Posts).FirstOrDefault();
+        //    return View(_mapper.Map<AccountViewModel>(_mapper.Map<AccountDTO>(account)));
+        //}
+        
+        public async Task<IActionResult> Details() => View(_mapper.Map<AccountViewModel>(_mapper.Map<AccountDTO>(await _userManager.GetUserAsync(HttpContext.User))));
+
+
         public async Task<IActionResult> ToMyPage()
         {
             Account account = await _userManager.GetUserAsync(HttpContext.User);
@@ -155,6 +164,8 @@ namespace AutoMyWebsite.Controllers
         }
 
         public async Task<IActionResult> Edit() => View(_mapper.Map<AccountViewModel>(_mapper.Map<AccountDTO>(await _userManager.GetUserAsync(HttpContext.User))));
+
+
 
         [HttpPost]
         public async Task<IActionResult> Edit(AccountViewModel accountViewModel)
