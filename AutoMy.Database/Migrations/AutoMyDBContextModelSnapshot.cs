@@ -183,9 +183,8 @@ namespace AutoMy.Database.Migrations
                     b.Property<bool>("ElectronicWindows")
                         .HasColumnType("bit");
 
-                    b.Property<string>("GearBox")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("GearBox")
+                        .HasColumnType("int");
 
                     b.Property<bool>("Hatch")
                         .HasColumnType("bit");
@@ -208,17 +207,13 @@ namespace AutoMy.Database.Migrations
                     b.Property<bool>("LeatherSaloon")
                         .HasColumnType("bit");
 
-                    b.Property<int>("Levied")
-                        .HasColumnType("int");
+                    b.Property<bool>("Levied")
+                        .HasColumnType("bit");
 
                     b.Property<int>("Mileage")
                         .HasColumnType("int");
 
                     b.Property<string>("Model")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -230,6 +225,9 @@ namespace AutoMy.Database.Migrations
 
                     b.Property<bool>("ParkingControl")
                         .HasColumnType("bit");
+
+                    b.Property<DateTime>("PostedTime")
+                        .HasColumnType("datetime2");
 
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(8,2)");

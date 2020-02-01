@@ -11,7 +11,6 @@ namespace AutoMy.DomainModels.Configurations
         public void Configure(EntityTypeBuilder<Post> builder)
         {
             builder.HasKey(o => o.Id);
-            builder.Property(o => o.Name).IsRequired();
             builder.Property(o => o.ImageUrl1).IsRequired();
             builder.Property(o => o.ImageUrl2).IsRequired();
             builder.Property(o => o.ImageUrl3).IsRequired();
