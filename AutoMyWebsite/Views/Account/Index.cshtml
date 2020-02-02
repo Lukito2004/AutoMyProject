@@ -114,7 +114,6 @@
 
         .SecondDiv {
             width: calc(100% = 230px);
-            height: 230px;
             display: inline-block;
         }
 
@@ -136,8 +135,8 @@
     <div class="container-fluid ">
         <div class="row">
 
-            <div class="col-md-10 my-col border-bottom shadow-sm p-3 mb-5 ">
-                <div>
+            <div class="col-xl-2 my-col border-bottom shadow-sm p-3 mb-5 ">
+                <div class="d-flex">
                     <div class="FirstDiv">
                         @if (Model.ImageUrl != null)
                         {
@@ -148,27 +147,36 @@
                             <img src="~/Source/user-default.jpg" class="img rounded" width="230" />
                         }
                     </div>
-                    <div class="SecondDiv">
+
+
+                </div>
+
+            </div>
+            <div class="SecondDiv col-xl-8 shadow-sm p-3 mb-5 d-flex" style="margin:0px;padding:0px;">
+                <div class="row" style="margin:0px;padding:0px;">
+
+                    <div class="col-md-12" style="margin-bottom:30px;">
+
                         <span id="UsernameP" style="font-size: 25px;">მოხმარებლის სახელი: @Model.Username</span>
-                        <br />
-                        <br />
-                        <br />
+                    </div>
+                    <div class="col-md-12" style="margin-bottom:30px;">
+
                         <span style="font-size: 25px;">სახელი და გვარი: @Model.FirstName @Model.LastName </span>
-                        <br />
-                        <br />
-                        <br />
+                    </div>
+                    <div class="col-md-12" style="margin-bottom:30px;">
+
                         <span id="PhoneNumberId" style="font-size: 25px;"></span>
                     </div>
                 </div>
 
             </div>
-            <div class="col-md-2  my-choose border-bottom shadow-sm p-3 mb-5 PostEditDivClass">
+            <div class="col-xl-2  my-choose border-bottom shadow-sm p-3 mb-5 PostEditDivClass">
                 <div id="PostEditDiv"></div>
 
-               
+
 
                 @*<a class="btn btn-lg btn-outline-secondary my-a" href="#"> შექმენი განცხადება </a>
-                <a class="btn btn-lg btn-outline-secondary my-a" href="#"> შეცვალე შენი პროფილი</a>*@
+            <a class="btn btn-lg btn-outline-secondary my-a" href="#"> შეცვალე შენი პროფილი</a>*@
 
             </div>
 
@@ -176,11 +184,11 @@
             <div class="col-sm-12" style="margin-top: 5%; ">
                 <div>
                     <hr>
-                    <h1>განცხადებები:</h1>
+                    <h1>განცხადებები :</h1>
                     <hr>
                 </div>
 
-                <div class="col-sm-12">
+                <div class="col-md-12">
                     <div class="row FlexDiv" style="padding: 0;margin: 0;">
                         @foreach (var post in Model.Posts)
                         {
@@ -200,7 +208,7 @@
                                     </div>
                                 </div>
                             </div>
-                         }
+                        }
                     </div>
                 </div>
             </div>
@@ -232,7 +240,8 @@
                     {
                         if (username == result)
                         {
-                            document.querySelector("#PostEditDiv").innerHTML = `<a class="btn btn-lg btn-outline-success my-a" href="/Post/Create">შექმენი განცხადება</a>
+                            document.querySelector("#PostEditDiv").innerHTML = `<a class="btn btn-lg btn-outline-secondary my-a" href="/Account/Edit"> პროფილის დატოვება </a>
+<a class="btn btn-lg btn-outline-success my-a" href="/Post/Create">შექმენი განცხადება</a>
                     <a class="btn btn-lg btn-outline-secondary my-a" href="/Account/Edit"> შეცვალე შენი პროფილი</a>`;
                         }
                     }
