@@ -65,8 +65,9 @@ namespace AutoMyWebsite.Controllers
         }
 
         [HttpPost]
-        public IActionResult Edit(PostViewModel post)
+        public async Task<IActionResult> Edit(PostViewModel post)
         {
+            post.AccountId = (await _userManager.GetUserAsync(HttpContext.User)).Id;
             PostDTO postdto = mapper.Map<PostDTO>(post);
             postService.UpdatePost(postdto);
             return View("Details", post);
@@ -79,12 +80,12 @@ namespace AutoMyWebsite.Controllers
             {
                 bool boolean = postService.AddReport(new ReportDTO() { Reason = reason, PostId = postId, SenderAccountId = (await _userManager.GetUserAsync(HttpContext.User)).Id });
                 if (boolean)
-                    return Json("Successfully reported");
+                    return Json("წარმატებით გაიგზავნა");
                 else
-                    return Json("You can't report twice on a post");
+                    return Json("მხოლოდ 1ხელ შეგიძლია განცხადების დარეპორტება");
             }
             else
-                return Json("Please enter your reason for reporting this post");
+                return Json("გთხოვთ შეიყვანეთ დარეპორტების მიზეზი");
         }
 
         [HttpPost]
@@ -95,7 +96,7 @@ namespace AutoMyWebsite.Controllers
             return View("Index", accountViewModels);
         }
 
-
+        [Authorize(Roles = "Admin")]
         public IActionResult Reports() => View(mapper.Map<List<ReportViewModel>>(postService.GetAllReports()));
 
         private Task ApplyModel(PostViewModel post)
@@ -123,7 +124,8 @@ namespace AutoMyWebsite.Controllers
 
         [AllowAnonymous]
         public IActionResult ReturnCategory(int CategoryId) => Json(categoryService.GetCategoryById(CategoryId).Name);
-    
+
+        [Authorize(Roles = "Admin")]
         public IActionResult AcceptReport(int postId)
         {
             postService.RemoveAllReportsFromThisPost(postId);
@@ -131,10 +133,18 @@ namespace AutoMyWebsite.Controllers
             return RedirectToAction("Reports");
         }
 
+        [Authorize(Roles = "Admin")]
         public IActionResult RejectReport(int reportId)
         {
             postService.RemoveReportWithId(reportId);
             return RedirectToAction("Reports");
+        }
+
+        public IActionResult ReturnPostDetails(int id)
+        {
+            PostDTO post = postService.GetPostWithId(id);
+            string JsonResultString = post.buyType.ToString() + " " + post.Company + " " + post.Model;
+            return Json(JsonResultString);
         }
     }
 }

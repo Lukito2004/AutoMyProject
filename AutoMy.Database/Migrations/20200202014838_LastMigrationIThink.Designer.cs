@@ -4,14 +4,16 @@ using AutoMy.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AutoMy.Database.Migrations
 {
     [DbContext(typeof(AutoMyDBContext))]
-    partial class AutoMyDBContextModelSnapshot : ModelSnapshot
+    [Migration("20200202014838_LastMigrationIThink")]
+    partial class LastMigrationIThink
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -25,9 +27,6 @@ namespace AutoMy.Database.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("AccessFailedCount")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ActivationCode")
                         .HasColumnType("int");
 
                     b.Property<string>("ConcurrencyStamp")

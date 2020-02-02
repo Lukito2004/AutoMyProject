@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using MailKit;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
@@ -16,6 +17,9 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using MimeKit;
+using System.Net.Mail;
+using System.Net;
 
 namespace AutoMyWebsite.Controllers
 {
@@ -28,8 +32,9 @@ namespace AutoMyWebsite.Controllers
 
         private readonly IMapper _mapper;
 
-        public AccountController(UserManager<Account> userManager, 
-            SignInManager<Account> signInManager, IMapper mapper, RoleManager<IdentityRole> roleManager)
+        public AccountController(UserManager<Account> userManager,
+            SignInManager<Account> signInManager, IMapper mapper,
+            RoleManager<IdentityRole> roleManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -125,7 +130,7 @@ namespace AutoMyWebsite.Controllers
         public async Task<IActionResult> ToMyPage()
         {
             Account account = await _userManager.GetUserAsync(HttpContext.User);
-            
+
             Account realaccount = _userManager.Users.Where(o => o.Id == account.Id).Include(c => c.Posts).FirstOrDefault();
 
             AccountDTO accountDTO = _mapper.Map<AccountDTO>(realaccount);
@@ -159,7 +164,7 @@ namespace AutoMyWebsite.Controllers
         [AllowAnonymous]
         public IActionResult IndexWithId(string id)
         {
-            AccountViewModel account = _mapper.Map<AccountViewModel>(_mapper.Map<AccountDTO>(_userManager.Users.Where(o => o.Id == id).Include(p => p.Posts)));
+            AccountViewModel account = _mapper.Map<AccountViewModel>(_mapper.Map<AccountDTO>(_userManager.Users.Where(o => o.Id == id).Include(p => p.Posts).FirstOrDefault()));
             return View("Index", account);
         }
 
@@ -171,8 +176,7 @@ namespace AutoMyWebsite.Controllers
         public async Task<IActionResult> Edit(AccountViewModel accountViewModel)
         {
             Account Newestaccount = await _userManager.GetUserAsync(HttpContext.User);
-            string password = new PasswordHasher<AccountViewModel>().HashPassword(accountViewModel, accountViewModel.Password);
-            Newestaccount.PasswordHash = password;
+            Newestaccount.PasswordHash = HashPassword(accountViewModel.Password);
             Newestaccount.PhoneNumber = accountViewModel.PhoneNumber;
             Newestaccount.DateOfBirth = accountViewModel.DateOfBirth;
             Newestaccount.Email = accountViewModel.Email;
@@ -185,13 +189,13 @@ namespace AutoMyWebsite.Controllers
             return View("Index", _mapper.Map<AccountViewModel>(_mapper.Map<AccountDTO>(await _userManager.GetUserAsync(HttpContext.User))));
         }
 
-        private async Task CreateRole(string RoleName) => await _roleManager.CreateAsync(new IdentityRole(RoleName));
+        public async Task CreateRole(string RoleName) => await _roleManager.CreateAsync(new IdentityRole(RoleName));
 
-        public async Task AddToAdmin(Account account) => await _userManager.AddToRoleAsync(account, "Admin");
+        public async Task AddToAdmin(string AccountId) => await _userManager.AddToRoleAsync((await _userManager.FindByIdAsync(AccountId)), "Admin");
 
         public async Task<IActionResult> IsAccountInRole(string username)
         {
-            if (await _userManager.IsInRoleAsync(await _userManager.FindByNameAsync(username), "Admin"))
+            if (await _userManager.IsInRoleAsync(await _userManager.FindByNameAsync(username), "Admin") && username.ToLower() == (await _userManager.GetUserAsync(HttpContext.User)).UserName.ToLower())
                 return Json(true);
             else
                 return Json(false);
@@ -213,7 +217,109 @@ namespace AutoMyWebsite.Controllers
         }
 
         [AllowAnonymous]
+        public IActionResult ForgotPassword() => View();
+
+        [AllowAnonymous]
+        public IActionResult EnterVerificationCode(string mail) => View(model: mail);
+
+        [AllowAnonymous]
+        public async Task<IActionResult> SendVeryficationCode(string email)
+        {
+            if (!email.IsAnything())
+                return Json("გთხოვთ შეიყვანეთ იმეილი");
+            else
+            {
+                Account account = await _userManager.FindByEmailAsync(email);
+                if (account == null || !account.Id.IsAnything())
+                    return Json("მოხმარებელი ამ იმეილით არ არსებობს");
+                else
+                {
+                    await SendMessageToGmail(email);
+                    return Json("success");
+                }
+            }
+        }
+
+        [AllowAnonymous]
         public async Task<IActionResult> ReturnPhoneNumber(string accountId) => Json((await _userManager.FindByIdAsync(accountId)).PhoneNumber);
 
+        [AllowAnonymous]
+        public async Task<IActionResult> ReturnPhoneNumberWithUsername(string username) => Json((await _userManager.FindByNameAsync(username)).PhoneNumber);
+
+        [AllowAnonymous]
+        private async Task<int> MakeAndApplyActivationCode(string Email)
+        {
+            Random rand = new Random();
+            string ActivationString = "";
+            for (var i = 0; i < 6; i++)
+            {
+                ActivationString = ActivationString + rand.Next(0, 10);
+            }
+            int ActivationInt = Convert.ToInt32(ActivationString);
+            Account account = await _userManager.FindByEmailAsync(Email);
+            account.ActivationCode = ActivationInt;
+            await _userManager.UpdateAsync(account);
+            return ActivationInt;
+        }
+
+        [AllowAnonymous]
+        public async Task<IActionResult> CheckVerificationCode(int verificationCode, string Email)
+        { 
+            Account account = await _userManager.FindByEmailAsync(Email);
+            if (account.ActivationCode == verificationCode)
+                return Json("success");
+            else
+                return Json("კოდი არასწორია, გთხოვთ გადაამოწმეთ");
+        }
+
+        [AllowAnonymous]
+        public IActionResult ChangePassword(string mail) => View(model: mail);
+
+        [AllowAnonymous]
+        [HttpPost]
+        public async Task ChangePassword(string email, string password)
+        {
+            Account acc = await _userManager.FindByEmailAsync(email);
+            acc.PasswordHash = HashPassword(password);
+            await _userManager.UpdateAsync(acc);
+            await _signInManager.SignInAsync(acc, true);
+        }
+
+        [AllowAnonymous]
+        private async Task SendMessageToGmail(string MessageRecieverGmail)
+        {
+            Account SendingAccount = await _userManager.FindByEmailAsync(MessageRecieverGmail);
+            var Message = new MailMessage("lukito.javaxishvili2004@gmail.com", MessageRecieverGmail);
+            int VerificationCode = await MakeAndApplyActivationCode(MessageRecieverGmail);
+            Message.Subject = "პაროლის აღდგენა";
+            Message.Body = "<h1>გამარჯობა " + SendingAccount.UserName + ", თუ გსურთ თქვენი პაროლის აღდგენა... შეიყვანეთ ეს კოდი: " + VerificationCode  + "</h1>";
+            Message.IsBodyHtml = true;
+
+            using (SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587))
+            {
+                smtp.UseDefaultCredentials = false;
+                smtp.Credentials = new NetworkCredential("lukito.javaxishvili2004@gmail.com", "2N1GL7F1");
+                smtp.EnableSsl = true;
+                smtp.Send(Message);
+            }
+        }
+        private static string HashPassword(string password)
+        {
+            byte[] salt;
+            byte[] buffer2;
+            if (password == null)
+            {
+                throw new ArgumentNullException("password");
+            }
+            using (Rfc2898DeriveBytes bytes = new Rfc2898DeriveBytes(password, 0x10, 0x3e8))
+            {
+                salt = bytes.Salt;
+                buffer2 = bytes.GetBytes(0x20);
+            }
+            byte[] dst = new byte[0x31];
+            Buffer.BlockCopy(salt, 0, dst, 1, 0x10);
+            Buffer.BlockCopy(buffer2, 0, dst, 0x11, 0x20);
+            return Convert.ToBase64String(dst);
+        }
     }
 }

@@ -70,16 +70,16 @@ namespace AutoMyWebsite.Models
             RuleFor(o => o.ImageUrl1).NotEmpty();
             RuleFor(o => o.ImageUrl2).NotEmpty();
             RuleFor(o => o.ImageUrl3).NotEmpty();
-            RuleFor(o => o.Price).GreaterThan(100M).WithMessage("Please check your price");
+            RuleFor(o => o.Price).GreaterThan(100M).WithMessage("გთხოვთ შეამოწმეთ ავტომობილის ფასი");
             RuleFor(o => o.Model).NotEmpty();
             RuleFor(o => o.Company).NotEmpty();
-            RuleFor(o => o.PublishingYear).NotEmpty();
-            RuleFor(o => o.PublishingYear).GreaterThan(1960);
-            RuleFor(o => o.PublishingYear).LessThanOrEqualTo(DateTime.Now.Year);
+            RuleFor(o => o.PublishingYear).NotEmpty()
+                                          .GreaterThanOrEqualTo(1960).WithMessage("დარწმუნებული ხარ?")
+                                          .LessThanOrEqualTo(DateTime.Now.Year).WithMessage("დარწმუნებული ხაaaaaaრ?");
             RuleFor(o => o.fuelType).NotEmpty();
             RuleFor(o => o.VelocityOfEngine).NotEmpty();
             RuleFor(o => o.Mileage).NotEmpty();
-            RuleFor(o => o.Cilinders).NotEmpty();
+            RuleFor(o => o.Cilinders).NotEmpty().LessThanOrEqualTo(20);
             RuleFor(o => o.GearBox).NotEmpty();
             RuleFor(o => o.DriveWheels).NotEmpty();
             RuleFor(o => o.Doors).NotEmpty();
@@ -87,6 +87,7 @@ namespace AutoMyWebsite.Models
             RuleFor(o => o.Color).NotEmpty();
             RuleFor(o => o.CabinColor).NotEmpty();
             RuleFor(o => o.AirbagCount).NotEmpty();
+            RuleFor(o => o.VinCode).NotEmpty();
             RuleFor(o => o.ABS).NotEmpty();
             RuleFor(o => o.ElectronicWindows).NotEmpty();
             RuleFor(o => o.AirConditioner).NotEmpty();

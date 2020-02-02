@@ -81,14 +81,17 @@
                             <label for="producer">
                                 <input type="text" asp-for="Company" id="producer" class="form-control" placeholder="Producer">
                             </label>
+                            <span asp-validation-for="Company" class="text-danger"></span>
                             <p class="mrg"> მოდელი : </p>
                             <label for="model">
                                 <input type="text" id="model" class="form-control" asp-for="Model" placeholder="Model">
                             </label>
+                            <span asp-validation-for="Model" class="text-danger"></span>
                             <p class="mrg"> გამოშვების წელი : </p>
                             <label for="outputofyear">
                                 <input type="number" id="outputofyear" class="form-control" asp-for="PublishingYear" placeholder="Publishing Year">
                             </label>
+                            <span asp-validation-for="PublishingYear" class="text-danger"></span>
                             <p class="mrg"> გარბენი (კმ) :</p>
                             <label for="Mileage">
                                 <input type="number" id="Mileage" class="form-control" asp-for="Mileage" placeholder="Mileage (Km)">
@@ -97,6 +100,7 @@
                             <label for="VinCode">
                                 <input type="text" id="VinCode" class="form-control" asp-for="VinCode" placeholder="VIN Code">
                             </label>
+                            <span asp-validation-for="VinCode" class="text-danger"></span>
                             <p class="mrg"> გადაცემის კოლოფი : </p>
                             <label for="gearbox">
                                 @Html.DropDownListFor(o => o.GearBox, Model.GearBoxListItem, new { @class = "form-control" })
@@ -115,10 +119,12 @@
                             <label for="barrel">
                                 <input id="barrel" class="form-control" asp-for="Cilinders" placeholder="Barrel">
                             </label>
+                            <span asp-validation-for="Cilinders" class="text-danger"></span>
                             <p class="mrg"> კარები : </p>
                             <label for="door">
                                 <input id="door" asp-for="Doors" class="form-control" placeholder="Door">
                             </label>
+                            <span asp-validation-for="Doors" class="text-danger"></span>
                             <p class="mrg"> საწვავის ტიპი :</p>
                             <label for="kindoffuel">
                                 @Html.DropDownListFor(o => o.fuelType, Model.FuelListItem, new { @class = "form-control" })
@@ -127,14 +133,21 @@
                             <label for="drivewheels">
                                 @Html.DropDownListFor(o => o.DriveWheels, Model.DriveWheelsListItem, new { @class = "form-control" })
                             </label>
+                            <p class="mrg"> აირბეგების რაოდენობა :</p>
+                            <label for="airbags">
+                                <input id="door" asp-for="AirbagCount" class="form-control" placeholder="Airbag Count">
+                            </label>
+                            <span asp-validation-for="AirbagCount" class="text-danger"></span>
                             <p class="mrg"> ფერი :</p>
                             <label for="color">
                                 <input type="text" id="color" asp-for="Color" placeholder="Color " class="form-control">
                             </label>
+                            <span asp-validation-for="Color" class="text-danger"></span>
                             <p class="mrg"> კაბინის ფერი :</p>
                             <label for="colorofcabin">
                                 <input type="text" id="colorofcabin" class="form-control" asp-for="CabinColor" placeholder="Color of cabin">
                             </label>
+                            <span asp-validation-for="CabinColor" class="text-danger"></span>
                         </div>
                     </div>
                 </div>
@@ -236,16 +249,22 @@
                 <hr>
                 <h1 class="titleofbuy">4. სურათები და აღწერა</h1>
                 <hr>
-                <div class="custom-file">
-                    <input asp-for="ImageUrl1" onchange="readURL(this);" type="file" class="custom-file-input" id="validatedCustomFile" required>
-                    <label class="custom-file-label" for="validatedCustomFile">Choose file...</label>
-                    <div class="invalid-feedback">Example invalid custom file feedback</div>
+                <div class="custom-file mb-3">
+                    <div class="custom-file">
+                        <input type="file" onchange="readURL(this);" class="custom-file-input" id="customFile" asp-for="ImageUrl1">
+                        <label class="custom-file-label" for="customFile">პირველი სურათი</label>
+                    </div>
+                    <span asp-validation-for="ImageUrl1" class="text-danger"></span>
                 </div>
                 <div class="custom-file mb-3">
-                    <input type="file" onchange="readURL2(this);" asp-for="ImageUrl2">
+                    <input type="file" onchange="readURL2(this);" class="custom-file-input" id="customFile" asp-for="ImageUrl2">
+                    <label class="custom-file-label" for="customFile">მეორე სურათი</label>
+                    <span asp-validation-for="ImageUrl2" class="text-danger"></span>
                 </div>
                 <div class="custom-file mb-3">
-                    <input type="file" onchange="readURL3(this);" asp-for="ImageUrl3">
+                    <input type="file" onchange="readURL3(this);" class="custom-file-input" id="customFile" asp-for="ImageUrl3">
+                    <label class="custom-file-label" for="customFile">მესამე სურათი</label>
+                    <span asp-validation-for="ImageUrl3" class="text-danger"></span>
                 </div>
                 <p style="text-align: center;">შენი სლაიდი</p>
                 <div style="background-color: rgb(0, 0, 0);">
@@ -281,6 +300,7 @@
                 <div class="form-group">
                     <label for="Description">აღწერა</label>
                     <textarea asp-for="Description" class="form-control" rows="5" id="Description"></textarea>
+                    <span asp-validation-for="Description" class="text-danger"></span>
                 </div>
                 <hr>
                 <h1 class="titleofbuy">5. რეალიზაცია, კონტაქტი</h1>
@@ -291,6 +311,7 @@
                         <label for="location">
                             <input asp-for="CityName" type="text" id="location" class="form-control">
                         </label>
+                        <span asp-validation-for="CityName" class="text-danger"></span>
                     </div>
 
                     <div class="col-sm-6">
@@ -322,6 +343,7 @@
                                 <label for="price">
                                     <input asp-for="Price" type="number" id="price" class="form-control">
                                 </label>
+                                <span asp-validation-for="Price" class="text-danger"></span>
                             </div>
                             <div class="col-sm-6 d-flex justify-content-start align-items-end">
                                 <a href="#" class="btn btn-outline-secondary" style="margin-right:20px;"> უკან </a>

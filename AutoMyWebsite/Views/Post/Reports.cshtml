@@ -9,17 +9,25 @@
         flex-wrap: wrap;
         justify-content: space-around;
     }
+
     .ReportDiv {
         width: 200px;
         border: 1px solid steelblue;
         padding: 5px;
     }
-    a {
+
+    #PostName, #ReporterName {
         text-decoration: none;
+        color: black;
+        font-weight: 600;
     }
-    a:hover {
+
+    #PostName:hover, #ReporterName:hover {
         text-decoration: none;
+        color: black;
+        font-weight: 600;
     }
+
     .buttondiv {
         width: 148px;
         margin: auto;
@@ -60,7 +68,7 @@
                 }
             });
             $.ajax({
-                url: "/Post/ReturnPostName?id=" + PostId,
+                url: "/Post/ReturnPostDetails?id=" + PostId,
                 success: function (result)
                 {
                     Divs.forEach(o => {

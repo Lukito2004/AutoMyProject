@@ -82,7 +82,7 @@ var isFunction = function isFunction( obj ) {
 
 
 var isWindow = function isWindow( obj ) {
-		return obj != null && obj === obj.window;
+		return obj !== null && obj === obj.window;
 	};
 
 
@@ -254,7 +254,7 @@ jQuery.extend = jQuery.fn.extend = function() {
 	for ( ; i < length; i++ ) {
 
 		// Only deal with non-null/undefined values
-		if ( ( options = arguments[ i ] ) != null ) {
+		if ( ( options = arguments[ i ]) != null ) {
 
 			// Extend the base object
 			for ( name in options ) {

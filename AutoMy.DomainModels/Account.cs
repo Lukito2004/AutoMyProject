@@ -14,6 +14,7 @@ namespace AutoMy.DomainModels
         public string LastName { get; set; }
         public DateTime DateOfBirth { get; set; }
         public string ImageUrl { get; set; }
+        public int ActivationCode { get; set; }
         public virtual IEnumerable<Post> Posts { get; set; }
     }
 }

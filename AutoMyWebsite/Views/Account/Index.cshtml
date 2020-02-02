@@ -69,7 +69,9 @@
         padding: 0px;
         margin: 0px;
     }
-
+    .rounded {
+        float: left;
+    }
 
 
     .container-fluid{
@@ -96,88 +98,72 @@
     text-align: left;
 }
 
-.my-choose{
-    display: flex;
-    flex-direction: column;
-    align-self: flex-end;
-}
-
-        .my-paragraph {
-        
-            display:none;
-        
+        .my-choose {
+            display: flex;
+            flex-direction: column;
+            align-self: flex-end;
         }
+
+        .FirstDiv {
+            width: 230px;
+            height: 230px;
+            float: left;
+            margin-right: 15px;
+            display: inline-block;
+        }
+
+        .SecondDiv {
+            width: calc(100% = 230px);
+            height: 230px;
+            display: inline-block;
+        }
+
+        .FlexDiv {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            width: 100%;
+        }
+
+        .PostEditDivClass {
+            display: flex;
+            flex-direction: column;
+        }
+
     </style>
 </head>
 <body onload="OnBodyLoad()">
-    <main>
-        @*<section class="UserSection">
-            <div class="UserInformation">
-               @if (Model.ImageUrl != null)
-                {
-                    <img src="@Model.ImageUrl" />
-                }
-                else
-                {
-                    <img src="~/Source/user-default.jpg" />
-                }
-                <p class="Name">@Model.FirstName @Model.LastName</p>
-                <p class="Number">Number: @Model.PhoneNumber</p>
-           </div>
-           <div id="PostEditDiv">
-                @if (SomeBoolean)
-                    {
-                        <a class="btn btn-primary" href="/Post/Create">Post!</a>
-                        <a class="btn btn-primary" href="/Account/Edit">Edit Account</a>
-                    }
-                @if (AccountBoolean)
-                    {
-                        <a class="btn btn-primary" href="/Post/Reports">Reports</a>
-                    }
-              </div>
-        </section>*@
-
-
-        @*<section class="PostSection">
-            @foreach (var post in Model.Posts)
-            {
-                <div class="PostDiv" id="@post.CategoryId">
-                        <img src=@post.ImageUrl />
-                    <p class="PostName">@post.Name</p>
-                    <p id="CategoryId"></p>
-                    <p class="PostPrice">Price: @post.Price$</p>
-                    <p class="PostCompany">Company: @post.Company</p>
-                    <p class="PostModel">Model: @post.Model</p>
-                    <p class="PostPublishingYear">Year: @post.PublishingYear</p>
-                    <a class="btn btn-primary" href=@Url.Action("Details", "Post", new { Postid = post.Id })>Details</a>
-                </div>
-            }
-        </section>*@
-    </main>
-
     <div class="container-fluid ">
         <div class="row">
 
             <div class="col-md-10 my-col border-bottom shadow-sm p-3 mb-5 ">
                 <div>
-                    @if (Model.ImageUrl != null)
-                    {
-                        <img class="img rounded" src="@Model.ImageUrl" width="200" />
-                    }
-                    else
-                    {
-                        <img src="~/Source/user-default.jpg" class="img rounded" width="200" />
-                    }
-                    <p id="UsernameP" class="my-paragraph">@Model.Username</p>
-
-                    <h1 style="font-size: 20px;"> @Model.FirstName @Model.LastName </h1>
+                    <div class="FirstDiv">
+                        @if (Model.ImageUrl != null)
+                        {
+                            <img class="img rounded" src="@Model.ImageUrl" width="230" />
+                        }
+                        else
+                        {
+                            <img src="~/Source/user-default.jpg" class="img rounded" width="230" />
+                        }
+                    </div>
+                    <div class="SecondDiv">
+                        <span id="UsernameP" style="font-size: 25px;">მოხმარებლის სახელი: @Model.Username</span>
+                        <br />
+                        <br />
+                        <br />
+                        <span style="font-size: 25px;">სახელი და გვარი: @Model.FirstName @Model.LastName </span>
+                        <br />
+                        <br />
+                        <br />
+                        <span id="PhoneNumberId" style="font-size: 25px;"></span>
+                    </div>
                 </div>
 
             </div>
-            <div class="col-md-2  my-choose border-bottom shadow-sm p-3 mb-5 ">
-                <div id="PostEditDiv">
-            
-                </div>
+            <div class="col-md-2  my-choose border-bottom shadow-sm p-3 mb-5 PostEditDivClass">
+                <div id="PostEditDiv"></div>
 
                
 
@@ -187,100 +173,105 @@
             </div>
 
 
-            <div class="col-sm-12" style="margin-top: 20%;">
+            <div class="col-sm-12" style="margin-top: 5%; ">
                 <div>
                     <hr>
-                    <h1>შენი პროდუქტი</h1>
+                    <h1>განცხადებები:</h1>
                     <hr>
                 </div>
 
                 <div class="col-sm-12">
-                    <div class="row" style="padding: 0;margin: 0;">
+                    <div class="row FlexDiv" style="padding: 0;margin: 0;">
                         @foreach (var post in Model.Posts)
                         {
-
-                            <div class="col-md-3 my-card" style="margin-bottom: 25px;">
+                            <div style="margin-bottom: 25px;">
                                 <div class="card" style="width: 20rem;">
                                     <div style="height:300px;">
-
                                         <img class="inventar-img" src="@post.ImageUrl1 ">
-                                   
                                     </div>
 
                                     <div class="card-body">
-                                        <h5 class="card-title">@post.Name</h5>
-                                        <p class="card-text">Price: @post.Price$</p>
-                                        <p class="card-text">Company: @post.Company</p>
-                                        <p class="card-text">Model: @post.Model</p>
-                                        <p class="card-text">Year: @post.PublishingYear</p>
+                                        <p class="card-text">ფასი: @post.Price ლ</p>
+                                        <p class="card-text">მწარმოებელი: @post.Company</p>
+                                        <p class="card-text">მოდელი: @post.Model</p>
+                                        <p class="card-text">გამოშვების წელი: @post.PublishingYear</p>
 
                                         <a href=@Url.Action("Details", "Post", new { Postid = post.Id }) class="btn btn-outline-success">დეტალები</a>
                                     </div>
                                 </div>
-
                             </div>
-                        }
-
+                         }
                     </div>
                 </div>
             </div>
         </div>
-
     </div>
 
         <script>
-        var Counter = 0;
-        var username = document.querySelector("#UsernameP").textContent;
-        function IsAdminOrNot()
-        {
-            $.ajax({
-                type: "GET",
-                url: "/Account/IsAccountInRole?username=@Model.Username",
-                success: function (result)
-                {
-                    if (result)
-                    {
-                        document.querySelector("#PostEditDiv").innerHTML += `<a href="/Post/Reports" class="btn btn-primary" style="margin-left: 5px;">Reports</a>`
-                    }
-                }
-            });
-        }
-        function PostEdit()
-        {
-            $.ajax({
-                url: "/Account/ReturnUsername",
-                success: function (result)
-                {
-                    if (username == result)
-                    {
-                        document.querySelector("#PostEditDiv").innerHTML = `<a class="btn btn-lg btn-outline-secondary my-a" href="/Post/Create">შექმენი განცხადება</a>
-                        <a class="btn   btn-lg btn-outline-secondary my-a" href="/Account/Edit"> შეცვალე შენი პროფილი</a>
-                        <a class="btn btn-lg btn-outline-secondary my-a" href="/Account/Details"> დეტალები შენზე </a>`;
-                    }
-                }
-            });
-        }
-        var Divs = document.querySelectorAll(".PostDiv");
-        var Counter = 0;
-        function ReturnCategory()
-        {
-            Divs.forEach(o => {
-                var categoryId = o.getAttribute("id");
+            var Counter = 0;
+            var username = document.querySelector("#UsernameP").textContent.replace("მოხმარებლის სახელი: ", "");
+            function IsAdminOrNot()
+            {
                 $.ajax({
-                    url: "/Post/ReturnCategory",
-                    data: { CategoryId: categoryId },
-                    success: function (result) {
-                        debugger;
-                        o.querySelector("#CategoryId").textContent = "Category: " + result;
+                    type: "GET",
+                    url: "/Account/IsAccountInRole?username=@Model.Username",
+                    success: function (result)
+                    {
+                        if (result)
+                        {
+                            document.querySelector("#PostEditDiv").innerHTML += `<a class="btn btn-lg btn-outline-info my-a" href="/Post/Reports">რეპორტები</a>`
+                        }
                     }
                 });
-            });
-        }
-        function OnBodyLoad()
-        {
-            PostEdit();
-            IsAdminOrNot();
-            ReturnCategory();
-        }
+            }
+            function PostEdit()
+            {
+                $.ajax({
+                    url: "/Account/ReturnUsername",
+                    success: function (result)
+                    {
+                        if (username == result)
+                        {
+                            document.querySelector("#PostEditDiv").innerHTML = `<a class="btn btn-lg btn-outline-success my-a" href="/Post/Create">შექმენი განცხადება</a>
+                    <a class="btn btn-lg btn-outline-secondary my-a" href="/Account/Edit"> შეცვალე შენი პროფილი</a>`;
+                        }
+                    }
+                });
+            }
+
+            function ReturnPhoneNumber()
+            {
+                $.ajax({
+                    url: "/Account/ReturnPhoneNumberWithUsername?username=@Model.Username",
+                    success: function (result)
+                    {
+                        document.querySelector("#PhoneNumberId").textContent = "მობილურის ნომერი: " + result;
+                    }
+                })
+            }
+          
+            var Divs = document.querySelectorAll(".PostDiv");
+            var Counter = 0;
+            function ReturnCategory()
+            {
+                Divs.forEach(o => {
+                    var categoryId = o.getAttribute("id");
+                    $.ajax({
+                        url: "/Post/ReturnCategory",
+                        data: { CategoryId: categoryId },
+                        success: function (result) {
+                            debugger;
+                            o.querySelector("#CategoryId").textContent = "Category: " + result;
+                        }
+                    });
+                });
+            }
+            function OnBodyLoad()
+            {
+                PostEdit();
+                IsAdminOrNot();
+                ReturnCategory();
+                ReturnPhoneNumber();
+            }
         </script>
 </body>
