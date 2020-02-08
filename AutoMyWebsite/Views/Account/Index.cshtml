@@ -117,12 +117,12 @@
             display: inline-block;
         }
 
-        .FlexDiv {
+        /*.FlexDiv {
             display: flex;
             flex-wrap: wrap;
             justify-content: space-around;
             width: 100%;
-        }
+        }*/
 
         .PostEditDivClass {
             display: flex;
@@ -240,7 +240,7 @@
                     {
                         if (username == result)
                         {
-                            document.querySelector("#PostEditDiv").innerHTML = `<a class="btn btn-lg btn-outline-secondary my-a" href="/Account/Edit"> პროფილის დატოვება </a>
+                            document.querySelector("#PostEditDiv").innerHTML = `<a class="btn btn-lg btn-outline-secondary my-a" href="/Account/SignIn"> პროფილის დატოვება </a>
 <a class="btn btn-lg btn-outline-success my-a" href="/Post/Create">შექმენი განცხადება</a>
                     <a class="btn btn-lg btn-outline-secondary my-a" href="/Account/Edit"> შეცვალე შენი პროფილი</a>`;
                         }
