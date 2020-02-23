@@ -67,9 +67,6 @@ namespace AutoMyWebsite.Models
     {
         public PostValidator()
         {
-            RuleFor(o => o.ImageUrl1).NotEmpty();
-            RuleFor(o => o.ImageUrl2).NotEmpty();
-            RuleFor(o => o.ImageUrl3).NotEmpty();
             RuleFor(o => o.Price).GreaterThan(100M).WithMessage("გთხოვთ შეამოწმეთ ავტომობილის ფასი");
             RuleFor(o => o.Model).NotEmpty();
             RuleFor(o => o.Company).NotEmpty();

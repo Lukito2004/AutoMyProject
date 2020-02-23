@@ -11,7 +11,7 @@
     }
 
     .ReportDiv {
-        width: 200px;
+        min-width: 200px;
         border: 1px solid steelblue;
         padding: 5px;
     }
@@ -29,39 +29,53 @@
     }
 
     .buttondiv {
-        width: 148px;
+        width: 95%;
         margin: auto;
+    }
+
+    .ChoiceButton {
+        display: block;
+        margin: auto;
+        margin-top: 10px;
     }
 </style>
 
-<h1>Reports</h1>
 
 <body onload="WhenBodyLoads()">
+    <a href="/Account/ToMyPage" class="btn btn-outline-info btn-md" style="margin-left: 10px;margin-top:28px;" />უკან</a>
     <section class="ReportSection" id="reportSection">
-        @foreach (var report in Model)
-        {
-            <div class="ReportDiv" id="@report.Id">
-                <p>Submitted By: <a id="ReporterName" href="/Account/IndexWithId?id=@report.SenderAccountId"></a></p>
-                <a href="/Post/Details?Postid=@report.PostId" id="PostName" style="display: block; text-align: center;"></a>
-                <p style="text-align: center">@report.Reason</p>
-                <div class="buttondiv">
-                    <a class="btn btn-success" href="/Post/AcceptReport?postId=@report.PostId">Accept</a>
-                    <a class="btn btn-danger" href="/Post/RejectReport?reportId=@report.Id">Reject</a>
+        <div class="cotainer">
+            <div class="row justify-content-center" style="padding: 0; margin: 0;">
+                <div class="col-lg-8">
+                    <div class="card">
+                        <div class="card-header " style="color: orange;font-size: 20px;"> <span class="display-4"> AutoMy </span>- რეპორტები </div>
+                        <div class="card-body">
+                            @foreach (var report in Model)
+                            {
+                                <div class="ReportDiv" id="@report.Id">
+                                    <p>გამოაქვეყნა: <a id="ReporterName" href="/Account/IndexWithId?id=@report.SenderAccountId"></a></p>
+                                    <a href="/Post/Details?Postid=@report.PostId" id="PostName" style="display: block; text-align: center;"></a>
+                                    <p style="text-align: center">@report.Reason</p>
+                                    <div class="buttondiv">
+                                        <a class="btn btn-success ChoiceButton" href="/Post/AcceptReport?postId=@report.PostId">დამტკიცება</a>
+                                        <a class="btn btn-danger ChoiceButton" href="/Post/RejectReport?reportId=@report.Id">უარყოფა</a>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
                 </div>
             </div>
-        }
+        </div>
     </section>
     <script>
         var Divs = document.querySelectorAll(".ReportDiv");
-        function Something(ReportId, SenderId, PostId)
-        {
+        function Something(ReportId, SenderId, PostId) {
             $.ajax({
                 url: "/Account/ReturnPosterUsername?usernameId=" + SenderId,
-                success: function (result)
-                {
+                success: function (result) {
                     Divs.forEach(o => {
-                        if (o.id == ReportId)
-                        {
+                        if (o.id == ReportId) {
                             o.querySelector("#ReporterName").textContent = result;
                         }
                     });
@@ -69,19 +83,16 @@
             });
             $.ajax({
                 url: "/Post/ReturnPostDetails?id=" + PostId,
-                success: function (result)
-                {
+                success: function (result) {
                     Divs.forEach(o => {
-                        if (o.id == ReportId)
-                        {
+                        if (o.id == ReportId) {
                             o.querySelector("#PostName").textContent = result;
                         }
                     });
                 }
             });
         }
-        function WhenBodyLoads()
-        {
+        function WhenBodyLoads() {
             Divs.forEach(o => {
                 var Reportid = o.getAttribute("id");
                 var Senderid = o.querySelector("#ReporterName").getAttribute("href").replace("/Account/IndexWithId?id=", "");

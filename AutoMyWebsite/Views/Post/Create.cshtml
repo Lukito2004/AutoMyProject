@@ -251,18 +251,18 @@
                 <hr>
                 <div class="custom-file mb-3">
                     <div class="custom-file">
-                        <input type="file" onchange="readURL(this);" class="custom-file-input" id="customFile" asp-for="ImageUrl1">
+                        <input accept="image/*" type="file" onchange="readURL(this);" class="custom-file-input" id="customFile" asp-for="ImageUrl1">
                         <label class="custom-file-label" for="customFile">პირველი სურათი</label>
                     </div>
                     <span asp-validation-for="ImageUrl1" class="text-danger"></span>
                 </div>
                 <div class="custom-file mb-3">
-                    <input type="file" onchange="readURL2(this);" class="custom-file-input" id="customFile" asp-for="ImageUrl2">
+                    <input accept="image/*" type="file" onchange="readURL2(this);" class="custom-file-input" id="customFile" asp-for="ImageUrl2">
                     <label class="custom-file-label" for="customFile">მეორე სურათი</label>
                     <span asp-validation-for="ImageUrl2" class="text-danger"></span>
                 </div>
                 <div class="custom-file mb-3">
-                    <input type="file" onchange="readURL3(this);" class="custom-file-input" id="customFile" asp-for="ImageUrl3">
+                    <input accept="image/*" type="file" onchange="readURL3(this);" class="custom-file-input" id="customFile" asp-for="ImageUrl3">
                     <label class="custom-file-label" for="customFile">მესამე სურათი</label>
                     <span asp-validation-for="ImageUrl3" class="text-danger"></span>
                 </div>

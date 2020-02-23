@@ -4,14 +4,31 @@
 }
 
 <head>
-
+    <style>
+        .verificationCodeInput {
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
     <div>
-        <h4>თქვენ მოგივიდათ ვერიფიკაციის კოდი Gmail-ზე, ჩაიწერეთ კოდი და ჩაწერეთ.</h4>
-        <input type="number" id="verificationId" name="verificationCode"/>
-        <span id="ErrorMessage" class="text-danger"></span>
-        <button onclick="GoToChangePassword()" class="btn btn-outline-success">პაროლის აღდგენა</button>
+        <main class="my-form">
+            <div class="cotainer">
+                <div class="row justify-content-center" style="padding: 0; margin: 0;">
+                    <div class="col-lg-8">
+                        <div class="card">
+                            <div class="card-header " style="color: orange;font-size: 20px;"> <span class="display-4"> AutoMy </span>- პაროლის აღდგენა </div>
+                            <div class="card-body">
+                                <h4>თქვენ მოგივიდათ ვერიფიკაციის კოდი Gmail-ზე, ჩაიწერეთ კოდი და ჩაწერეთ.</h4>
+                                <input type="number" id="verificationId" name="verificationCode" class="verificationCodeInput"/>
+                                <span id="ErrorMessage" class="text-danger"></span>
+                                <button onclick="GoToChangePassword()" class="btn btn-outline-success">პაროლის აღდგენა</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
     </div>
 
     <script>

@@ -179,9 +179,10 @@
             <a class="btn btn-lg btn-outline-secondary my-a" href="#"> შეცვალე შენი პროფილი</a>*@
 
             </div>
+            <a class="btn btn-lg btn-outline-success my-a" href="/Post/Index">ყველა განცხადება</a>
 
 
-            <div class="col-sm-12" style="margin-top: 5%; ">
+            <div class="col-sm-12" style="margin-top: 2%; ">
                 <div>
                     <hr>
                     <h1>განცხადებები :</h1>
@@ -240,7 +241,7 @@
                     {
                         if (username == result)
                         {
-                            document.querySelector("#PostEditDiv").innerHTML = `<a class="btn btn-lg btn-outline-secondary my-a" href="/Account/Edit"> პროფილის დატოვება </a>
+                            document.querySelector("#PostEditDiv").innerHTML = `<a class="btn btn-lg btn-outline-secondary my-a" href="/Account/SignOut"> პროფილის დატოვება </a>
 <a class="btn btn-lg btn-outline-success my-a" href="/Post/Create">შექმენი განცხადება</a>
                     <a class="btn btn-lg btn-outline-secondary my-a" href="/Account/Edit"> შეცვალე შენი პროფილი</a>`;
                         }
